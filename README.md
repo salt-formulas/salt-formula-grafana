@@ -7,7 +7,22 @@ A beautiful, easy to use and feature rich Graphite dashboard replacement and gra
 
     grafana:
       server:
-        enabled: trues
+        enabled: true
+        source:
+          type: 'git'
+          address: https://github.com/torkelo/grafana.git
+          rev: v1.4.0
+        elasticsearch:
+          host: localhost
+          port: 9200
+        data:
+        - name: metrics1
+          type: graphite
+          host: metrics1.domain.com
+          ssl: true
+          port: 443
+          user: test
+          name: user
 
 ## Read more
 

@@ -10,25 +10,31 @@ include:
   - mode: 755
   - makedirs: true
 
+{% if pillar.grafana.server.source.type == 'git' %}
+
 grafana_repository:
   git.latest:
-  - name: https://github.com/torkelo/grafana.git
-  - rev: master
+  - name: {{ pillar.grafana.server.source.address }}
+  - rev: {{ pillar.grafana.server.source.rev }}
   - target: /srv/grafana/site
   - require:
     - file: /srv/grafana
     - pkg: git_packages
 
-{#
-/srv/grafana/sites/{{ app.name }}/config/configuration.yml:
+grafana_install:
+  cmd.run:
+  - name: npm install
+  - cwd: /srv/grafana/site
+  - unless: test -e /srv/grafana/site/node_modules
+  - require:
+    - git: grafana_repository
+
+{% endif %}
+
+/srv/grafana/site/src/config.js:
   file:
   - managed
-  - source: salt://grafana/conf/configuration.yml
+  - source: salt://grafana/conf/config.js
   - template: jinja
-  - defaults:
-    app_name: "{{ app.name }}"
-  - require:
-    - hg: repo-{{ app.name }}
-#}
 
 {%- endif %}
