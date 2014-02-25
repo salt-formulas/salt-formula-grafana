@@ -39,5 +39,7 @@ grafana_install:
   - managed
   - source: salt://grafana/conf/config.js
   - template: jinja
+  - require:
+    - cmd: grafana_install
 
 {%- endif %}
