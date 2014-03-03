@@ -13,7 +13,7 @@ function (Settings) {
      * elasticsearch url:
      * For Basic authentication use: http://username:password@domain.com:9200
      */
-    elasticsearch: "http://{{ pillar.grafana.server.elasticsearch.host }}:{{ pillar.grafana.server.elasticsearch.port }}",
+    elasticsearch: "http://{{ salt['pillar.get']('grafana:server:elasticsearch:host', "") }}:{{ salt['pillar.get']('grafana:server:elasticsearch:port', 9200) }}",
 
     /**
      * graphite-web url:
@@ -22,7 +22,15 @@ function (Settings) {
      * in nginx or apache for cross origin domain sharing to work (CORS).
      * Check install documentation on github
      */
-    graphiteUrl: "http://"+window.location.hostname+":8080",
+    {% set data = pillar.grafana.server.data %}
+
+    {% if data.get("type", "") == "graphite" %}
+    {% if data.get("ssl", "false") %}
+    graphiteUrl: "https://"+{{ data.get("host", "") }}+":{{ data.get("port", 443) }}",
+    {% else %}
+    graphiteUrl: "http://"+{{ data.get("host", "") }}+":{{ data.get("port", 80) }}",
+    {% endif %}
+    {% endif %}
 
     /**
      * Multiple graphite servers? Comment out graphiteUrl and replace with
