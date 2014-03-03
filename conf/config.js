@@ -22,24 +22,28 @@ function (Settings) {
      * in nginx or apache for cross origin domain sharing to work (CORS).
      * Check install documentation on github
      */
-    {% set data = pillar.grafana.server.data %}
+    {% if data in pillar.grafana.server.data.count == 1 %}
 
-    {% if data.get("type", "") == "graphite" %}
-    {% if data.get("ssl", "false") %}
-    graphiteUrl: "https://"+{{ data.get("host", "") }}+":{{ data.get("port", 443) }}",
-    {% else %}
-    graphiteUrl: "http://"+{{ data.get("host", "") }}+":{{ data.get("port", 80) }}",
-    {% endif %}
-    {% endif %}
+    {% for data in pillar.grafana.server.data %}
+    {%- if data.type == "graphite" %}
+    graphiteUrl: "http://"+{{ data.host }}+":{{ data.port }}",
+    {%- endif %}
+    {% endfor %}
+
+    {%- else %}
+    /*graphiteUrl: "http://"+{{ salt['pillar.get']('grafana:server:data:host', "")}}+":{{ salt['pillar.get']('grafana:server:data:port', 80)}}",
+    */
 
     /**
      * Multiple graphite servers? Comment out graphiteUrl and replace with
      *
      *  datasources: {
+          
      *    data_center_us: { type: 'graphite',  url: 'http://<graphite_url>',  default: true },
      *    data_center_eu: { type: 'graphite',  url: 'http://<graphite_url>' }
      *  }
      */
+    {%- endif %}
 
     default_route: '/dashboard/file/default.json',
 

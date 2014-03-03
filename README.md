@@ -11,7 +11,7 @@ A beautiful, easy to use and feature rich Graphite dashboard replacement and gra
         source:
           type: 'git'
           address: https://github.com/torkelo/grafana.git
-          rev: v1.4.0
+          rev: master
         elasticsearch:
           host: localhost
           port: 9200
