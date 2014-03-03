@@ -10,6 +10,7 @@ include:
   - mode: 755
   - makedirs: true
 
+
 {% if pillar.grafana.server.source.type == 'git' %}
 
 grafana_repository:
@@ -21,6 +22,14 @@ grafana_repository:
     - file: /srv/grafana
     - pkg: git_packages
 
+/srv/grafana/site/src/config.js:
+  file:
+  - managed
+  - source: salt://grafana/conf/config.js
+  - template: jinja
+  - require:
+    - git: grafana_repository
+
 grafana_install:
   cmd.run:
   - names: 
@@ -31,7 +40,6 @@ grafana_install:
   - require:
     - git: grafana_repository
 
-
 grafana_grun_build:
   cmd.run:
   - names: 
@@ -40,16 +48,8 @@ grafana_grun_build:
   - unless: test -e /srv/grafana/site/dist
   - require:
     - git: grafana_repository
-
+    - file: /srv/grafana/site/src/config.js
 
 {% endif %}
-
-/srv/grafana/site/src/config.js:
-  file:
-  - managed
-  - source: salt://grafana/conf/config.js
-  - template: jinja
-  - require:
-    - cmd: grafana_install
 
 {%- endif %}
