@@ -22,7 +22,6 @@ A beautiful, easy to use and feature rich Graphite dashboard replacement and gra
           ssl: true
           port: 443
           user: test
-          name: user
 
 ## Read more
 
