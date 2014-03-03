@@ -22,11 +22,11 @@ function (Settings) {
      * in nginx or apache for cross origin domain sharing to work (CORS).
      * Check install documentation on github
      */
-    {% if data in pillar.grafana.server.data.count == 1 %}
+    {% if (pillar.grafana.server.data|length) == 1 %}
 
     {% for data in pillar.grafana.server.data %}
     {%- if data.type == "graphite" %}
-    graphiteUrl: "http://"+{{ data.host }}+":{{ data.port }}",
+    graphiteUrl: "http://{{ data.host }}:{{ data.port }}",
     {%- endif %}
     {% endfor %}
 
@@ -38,7 +38,7 @@ function (Settings) {
      * Multiple graphite servers? Comment out graphiteUrl and replace with
      *
      *  datasources: {
-          
+
      *    data_center_us: { type: 'graphite',  url: 'http://<graphite_url>',  default: true },
      *    data_center_eu: { type: 'graphite',  url: 'http://<graphite_url>' }
      *  }

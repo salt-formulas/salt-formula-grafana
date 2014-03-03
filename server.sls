@@ -26,11 +26,21 @@ grafana_install:
   - names: 
     - npm install
     - npm install -g grunt-cli
-    - grunt build
   - cwd: /srv/grafana/site
   - unless: test -e /srv/grafana/site/node_modules
   - require:
     - git: grafana_repository
+
+
+grafana_grun_build:
+  cmd.run:
+  - names: 
+    - grunt build --force
+  - cwd: /srv/grafana/site
+  - unless: test -e /srv/grafana/site/dist
+  - require:
+    - git: grafana_repository
+
 
 {% endif %}
 
