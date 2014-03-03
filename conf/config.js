@@ -13,7 +13,7 @@ function (Settings) {
      * elasticsearch url:
      * For Basic authentication use: http://username:password@domain.com:9200
      */
-    elasticsearch: "http://{{ salt['pillar.get']('grafana:server:elasticsearch:host', "") }}:{{ salt['pillar.get']('grafana:server:elasticsearch:port', 9200) }}",
+    elasticsearch: "http://{{ pillar.grafana.server.elasticsearch.host }}:{{ pillar.grafana.server.elasticsearch.port }}",
 
     /**
      * graphite-web url:
