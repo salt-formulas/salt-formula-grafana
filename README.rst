@@ -1,9 +1,12 @@
 
-# Grafana
+=======
+Grafana
+=======
 
 A beautiful, easy to use and feature rich Graphite dashboard replacement and graph editor.
 
-## Sample pillar
+Sample pillar
+=============
 
     grafana:
       server:
@@ -23,7 +26,7 @@ A beautiful, easy to use and feature rich Graphite dashboard replacement and gra
           port: 443
           user: test
 
-## Sample pillar with source from stable package
+Sample pillar with source from stable package
 
     grafana:
       server:
@@ -42,7 +45,8 @@ A beautiful, easy to use and feature rich Graphite dashboard replacement and gra
           port: 443
           user: test
 
-## Read more
+Read more
+=========
 
 * http://grafana.org/
 * https://github.com/torkelo/grafana/wiki
