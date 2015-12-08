@@ -9,8 +9,8 @@ grafana_packages:
   file.managed:
   - source: salt://grafana/files/grafana.ini
   - template: jinja
-  - user: root
-  - group: root
+  - user: grafana
+  - group: grafana
   - require:
     - pkg: grafana_packages
 
