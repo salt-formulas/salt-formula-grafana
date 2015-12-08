@@ -5,17 +5,14 @@ Grafana
 
 A beautiful, easy to use and feature rich Graphite dashboard replacement and graph editor.
 
-Sample pillar
-=============
+Sample pillars
+==============
 
-Sample pillar with source from system package
+Sample pillar installed from system package
 
     grafana:
       server:
         enabled: true
-        source:
-          type: 'pkg'
-          version: 2.5.0
         database:
           engine: postgresql
           host: localhost
@@ -27,9 +24,14 @@ Sample pillar with source from system package
             ssl: true
             port: 443
             user: test
-
+          metrics2:
+            engine: elasticsearch
+            host: metrics2.domain.com
+            port: 80
+            user: test
+            index: grafana-dash
 Read more
 =========
 
 * http://grafana.org/
-* https://github.com/torkelo/grafana/wiki
+* http://docs.grafana.org/reference/export_import/
