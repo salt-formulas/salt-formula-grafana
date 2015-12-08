@@ -3,14 +3,11 @@
 
 grafana_packages:
   pkg.installed:
-  - names:
-    - python-memcache
-    - python-psycopg2
-    - python-imaging
+  - names: {{ server.pkgs }}
 
-/etc/grafana/local_settings.py:
+/etc/grafana/grafana.ini:
   file.managed:
-  - source: salt://grafana/files/local_settings.py
+  - source: salt://grafana/files/grafana.ini
   - template: jinja
   - user: root
   - group: root

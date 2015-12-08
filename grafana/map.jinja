@@ -1,0 +1,11 @@
+
+{%- load_yaml as base_defaults %}
+Debian:
+  pkgs:
+  - grafana
+  bind:
+    address: 0.0.0.0
+    port: 3000
+{%- endload %}
+
+{%- set server = salt['grains.filter_by'](base_defaults, merge=salt['pillar.get']('grafana:server')) %}
