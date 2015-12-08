@@ -14,4 +14,12 @@ grafana_packages:
   - require:
     - pkg: grafana_packages
 
+grafana_service:
+  service.running:
+  - name: {{ server.service }}
+  - enable: true
+  - reload: true
+  - watch:
+    - file: /etc/grafana/grafana.ini
+
 {%- endif %}
