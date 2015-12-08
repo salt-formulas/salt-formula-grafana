@@ -4,3 +4,9 @@ parameters:
   grafana:
     server:
       enabled: true
+      database:
+        engine: postgresql
+        host: 127.0.0.1
+        name: grafana
+        password: ${_param:postgresql_grafana_password}
+        user: grafana
