@@ -1,5 +1,7 @@
 applications:
 - grafana
+classes:
+- service.grafana.support
 parameters:
   grafana:
     server:
