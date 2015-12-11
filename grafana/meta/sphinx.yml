@@ -8,10 +8,10 @@ doc:
       param:
         bind:
           name: Network bind
-          value: {{ server.bind.host }}:{{ server.bind.port }}
+          value: {{ server.bind.address }}:{{ server.bind.port }}
       endpoint:
         grafana_server:
           name: default
           type: grafana_server
-          address: http://{{ server.bind.host }}:{{ server.bind.port }}/
+          address: http://{{ server.bind.address }}:{{ server.bind.port }}/
           protocol: http
