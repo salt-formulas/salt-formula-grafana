@@ -7,11 +7,23 @@ doc:
       name: server
       param:
         bind:
-          name: Network bind
+          name: Network
           value: {{ server.bind.address }}:{{ server.bind.port }}
       endpoint:
+        {%- if server.bind.address == '0.0.0.0' %}
+        {%- for address in salt['grains.item']('ipv4')['ipv4'] %}
+        {%- if address != '127.0.0.1' %}
+        grafana_server:
+          name: default
+          type: grafana_server
+          address: http://{{ address }}:{{ server.bind.port }}/
+          protocol: http
+        {%- endif %}
+        {%- endfor %}
+        {%- else %}
         grafana_server:
           name: default
           type: grafana_server
           address: http://{{ server.bind.address }}:{{ server.bind.port }}/
           protocol: http
+        {%- endif %}
