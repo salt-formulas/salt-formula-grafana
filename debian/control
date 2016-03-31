@@ -1,0 +1,15 @@
+Source: salt-formula-grafana
+Maintainer: tcpcloud Packaging Team <pkg-team@tcpcloud.eu>
+Section: admin
+Priority: optional
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+Homepage: http://www.tcpcloud.eu
+Vcs-Browser: https://github.com/tcpcloud/salt-formula-grafana
+Vcs-Git: https://github.com/tcpcloud/salt-formula-grafana.git
+
+Package: salt-formula-grafana
+Architecture: all
+Depends: ${misc:Depends}, salt-master, reclass
+Description: grafana Salt formula
+ Install and configure grafana server and relay.

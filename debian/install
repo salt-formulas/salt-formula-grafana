@@ -1,0 +1,2 @@
+grafana/*             /usr/share/salt-formulas/env/grafana/
+metadata/service/*  /usr/share/salt-formulas/reclass/service/grafana/
