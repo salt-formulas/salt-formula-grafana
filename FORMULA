@@ -1,0 +1,8 @@
+name: grafana
+os: Debian
+os_family: Debian
+version: 201606
+release: 1
+summary: grafana Salt formula
+description: Install and configure grafana server and relay.
+top_level_dir: grafana
