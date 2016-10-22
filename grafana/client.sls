@@ -26,15 +26,6 @@ grafana_client_datasource_{{ datasource_name }}:
 
 {%- endfor %}
 
-{%- for dashboard_name, dashboard in client.dashboard.iteritems() %}
-
-grafana_client_dashboard_{{ dashboard_name }}:
-  grafana_dashboard.present:
-  - name: {{ dashboard_name }}
-  - dashboard: {{ dashboard }}
-
-{%- endfor %}
-
 {%- set raw_dict = {} %}
 {%- set final_dict = {} %}
 

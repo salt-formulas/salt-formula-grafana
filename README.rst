@@ -5,8 +5,10 @@ Grafana
 
 A beautiful, easy to use and feature rich Graphite dashboard replacement and graph editor.
 
+
 Sample pillars
 ==============
+
 
 Server deployments
 ------------------
@@ -42,10 +44,11 @@ Server installed with PostgreSQL database
           user: grafana
           password: passwd
 
+
 Collector setup
 ---------------
 
-Used to aggregate dashboards
+Used to aggregate dashboards from monitoring node.
 
 .. code-block:: yaml
 
@@ -83,7 +86,7 @@ Client enforced data sources
             password: password
             index: grafana-dash
 
-Client enforced dashboards
+Client defined and enforced dashboard
 
 .. code-block:: yaml
 
@@ -117,12 +120,13 @@ Client enforced dashboards defined in salt-mine
           port: 3000
           token: token
 
+
 Usage
 =====
 
 There's a difference between JSON dashboard representation and models we us. Lists are replaced by dictionaries to support mergings and interpolations.
 
-Client enforced dashboards defined in salt-mine
+The default format of Grafana dashboards with lists for rows, panels and targets.
 
 .. code-block:: yaml
 
@@ -146,28 +150,32 @@ Client enforced dashboards defined in salt-mine
         showTitle: true
 
 
+The modified version of Grafana dashboard format that supports character interpolation.
+
 .. code-block:: yaml
 
     system_metrics:
-      title: graph
-      editable: true
-      hideControls: false
-      rows:
-      - title: Usage
-        height: 250px
-        panels:
-        - title: Panel Title
-          span: 6
-          editable: false
-          type: graph
-          targets: 
-          - refId: A
-            target: "support_prd.cfg01_iot_tcpcloud_eu.cpu.0.idle"
-          datasource: graphite01
-          renderer: flot
-        showTitle: true
-
-
+        system_metrics2:
+          title: graph
+          editable: true
+          hideControls: false
+          row:
+            usage:
+              title: Usage
+              height: 250px
+              panel:
+                usage-panel:
+                  title: Panel Title
+                  span: 6
+                  editable: false
+                  type: graph
+                  target:
+                    A:
+                      refId: A
+                      target: "support_prd.cfg01_iot_tcpcloud_eu.cpu.0.idle"
+                  datasource: graphite01
+                  renderer: flot
+              showTitle: true
 
 
 Read more
