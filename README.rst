@@ -42,6 +42,18 @@ Server installed with PostgreSQL database
           user: grafana
           password: passwd
 
+Collector setup
+---------------
+
+Used to aggregate dashboards
+
+.. code-block:: yaml
+
+    grafana:
+      collector:
+        enabled: true
+
+
 Client setups
 -------------
 
@@ -98,11 +110,64 @@ Client enforced dashboards defined in salt-mine
     grafana:
       client:
         enabled: true
-        collect_mine: true
+        remote_data:
+          engine: salt_mine
         server:
           host: grafana.host
           port: 3000
           token: token
+
+Usage
+=====
+
+There's a difference between JSON dashboard representation and models we us. Lists are replaced by dictionaries to support mergings and interpolations.
+
+Client enforced dashboards defined in salt-mine
+
+.. code-block:: yaml
+
+    system_metrics:
+      title: graph
+      editable: true
+      hideControls: false
+      rows:
+      - title: Usage
+        height: 250px
+        panels:
+        - title: Panel Title
+          span: 6
+          editable: false
+          type: graph
+          targets: 
+          - refId: A
+            target: "support_prd.cfg01_iot_tcpcloud_eu.cpu.0.idle"
+          datasource: graphite01
+          renderer: flot
+        showTitle: true
+
+
+.. code-block:: yaml
+
+    system_metrics:
+      title: graph
+      editable: true
+      hideControls: false
+      rows:
+      - title: Usage
+        height: 250px
+        panels:
+        - title: Panel Title
+          span: 6
+          editable: false
+          type: graph
+          targets: 
+          - refId: A
+            target: "support_prd.cfg01_iot_tcpcloud_eu.cpu.0.idle"
+          datasource: graphite01
+          renderer: flot
+        showTitle: true
+
+
 
 
 Read more
