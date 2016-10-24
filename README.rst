@@ -82,8 +82,6 @@ Client enforced data sources
             type: elasticsearch
             host: log01.domain.com
             port: 80
-            user: admin
-            password: password
             index: grafana-dash
 
 Client defined and enforced dashboard
@@ -124,7 +122,10 @@ Client enforced dashboards defined in salt-mine
 Usage
 =====
 
-There's a difference between JSON dashboard representation and models we us. Lists are replaced by dictionaries to support mergings and interpolations.
+There's a difference between JSON dashboard representation and models we us.
+The lists used in JSON format [for rows, panels and target] were replaced by
+dictionaries. This form of serialization allows better merging and overrides
+of hierarchical data structures that dashboard models are.
 
 The default format of Grafana dashboards with lists for rows, panels and targets.
 
@@ -149,8 +150,9 @@ The default format of Grafana dashboards with lists for rows, panels and targets
           renderer: flot
         showTitle: true
 
-
-The modified version of Grafana dashboard format that supports character interpolation.
+The modified version of Grafana dashboard format with dictionary declarations.
+Please note that dictionary keys are only for logical separation and are not
+displayed in generated dashboards.
 
 .. code-block:: yaml
 
