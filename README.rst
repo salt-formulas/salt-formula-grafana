@@ -44,6 +44,20 @@ Server installed with PostgreSQL database
           user: grafana
           password: passwd
 
+Server installed with default StackLight JSON dashboards
+
+.. code-block:: yaml
+
+    grafana:
+      server:
+        enabled: true
+        admin:
+          user: admin
+          password: passwd
+        dashboards:
+          enabled: true
+          path: /var/lib/grafana/dashboards
+
 
 Collector setup
 ---------------
