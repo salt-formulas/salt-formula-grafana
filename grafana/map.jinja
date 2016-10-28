@@ -7,6 +7,31 @@ Debian:
   bind:
     address: 0.0.0.0
     port: 3000
+  session:
+    engine: file
+  auth:
+    engine: application
+  admin:
+    user: admin
+    password: admin
+  allow_sign_up: False
+  allow_org_create: False
+  auto_assign_role: Viewer
+  dashboards:
+    enabled: false
 {%- endload %}
 
 {%- set server = salt['grains.filter_by'](base_defaults, merge=salt['pillar.get']('grafana:server')) %}
+
+{%- load_yaml as base_defaults %}
+Debian:
+  server:
+    host: 127.0.0.1
+    port: 3000
+  remote_data:
+    engine: none
+  datasource: {}
+  dashboard: {}
+{%- endload %}
+
+{%- set client = salt['grains.filter_by'](base_defaults, merge=salt['pillar.get']('grafana:client')) %}
