@@ -11,7 +11,7 @@
 {%- for datasource_name, datasource in client.datasource.iteritems() %}
 
 grafana_client_datasource_{{ datasource_name }}:
-  grafana_datasource.present:
+  grafana3_datasource.present:
   - name: {{ datasource_name }}
   - type: {{ datasource.type }}
   - url: http://{{ datasource.host }}:{{ datasource.get('port', 80) }}
@@ -62,10 +62,20 @@ grafana_client_datasource_{{ datasource_name }}:
 
 {%- for dashboard_name, dashboard in final_dict.iteritems() %}
 
+{%- if dashboard.get('enabled', True) %}
+
 grafana_client_dashboard_{{ dashboard_name }}:
-  grafana_dashboard.present:
+  grafana3_dashboard.present:
   - name: {{ dashboard_name }}
   - dashboard: {{ dashboard }}
+
+{%- else %}
+
+grafana_client_dashboard_{{ dashboard_name }}:
+  grafana3_dashboard.absent:
+  - name: {{ dashboard_name }}
+
+{%- endif %}
 
 {%- endfor %}
 

@@ -51,12 +51,26 @@ Server installed with default StackLight JSON dashboards
     grafana:
       server:
         enabled: true
-        admin:
-          user: admin
-          password: passwd
         dashboards:
           enabled: true
           path: /var/lib/grafana/dashboards
+
+Server with theme overrides
+
+.. code-block:: yaml
+
+    grafana:
+      server:
+        enabled: true
+        theme:
+          light:
+            css_override:
+              source: http://path.to.theme
+              source_hash: sha256=xyz
+              build: xyz
+          dark:
+            css_override:
+              source: salt://path.to.theme
 
 
 Collector setup
@@ -74,7 +88,7 @@ Used to aggregate dashboards from monitoring node.
 Client setups
 -------------
 
-Client enforced data sources
+Client with token based auth
 
 .. code-block:: yaml
 
@@ -86,12 +100,43 @@ Client enforced data sources
           host: grafana.host
           port: 3000
           token: token
+
+Client with base auth
+
+.. code-block:: yaml
+
+    grafana:
+      client:
+        enabled: true
+        server:
+          protocol: https
+          host: grafana.host
+          port: 3000
+          user: admin
+          password: password
+
+Client enforcing graphite data source
+
+.. code-block:: yaml
+
+    grafana:
+      client:
+        enabled: true
         datasource:
           graphite:
             type: graphite
             host: mtr01.domain.com
             protocol: https
             port: 443
+
+Client enforcing elasticsearch data source
+
+.. code-block:: yaml
+
+    grafana:
+      client:
+        enabled: true
+        datasource:
           elasticsearch:
             type: elasticsearch
             host: log01.domain.com
