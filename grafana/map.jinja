@@ -1,5 +1,5 @@
 
-{%- load_yaml as base_defaults %}
+{%- load_yaml as server_defaults %}
 Debian:
   pkgs:
   - grafana
@@ -7,6 +7,41 @@ Debian:
   bind:
     address: 0.0.0.0
     port: 3000
+  session:
+    engine: file
+  auth:
+    engine: application
+  admin:
+    user: admin
+    password: admin
+  allow_sign_up: False
+  allow_org_create: False
+  auto_assign_role: Viewer
+  dir:
+    static: /usr/share/grafana/public
+  dashboards:
+    enabled: false
 {%- endload %}
 
-{%- set server = salt['grains.filter_by'](base_defaults, merge=salt['pillar.get']('grafana:server')) %}
+{%- set server = salt['grains.filter_by'](server_defaults, merge=salt['pillar.get']('grafana:server')) %}
+
+{%- load_yaml as client_defaults %}
+Debian:
+  server:
+    host: 127.0.0.1
+    port: 3000
+  remote_data:
+    engine: none
+  datasource: {}
+  dashboard: {}
+{%- endload %}
+
+{%- set client = salt['grains.filter_by'](client_defaults, merge=salt['pillar.get']('grafana:client')) %}
+
+{%- load_yaml as collector_defaults %}
+default:
+  storage:
+    engine: salt-mine
+{%- endload %}
+
+{%- set collector = salt['grains.filter_by'](collector_defaults, merge=salt['pillar.get']('grafana:collector')) %}
