@@ -2487,7 +2487,7 @@
         "multiFormat": "glob",
         "name": "server",
         "options": [],
-        "query": "show tag values from influxdb_go_routines with key=\"hostname\" where environment_label = '$environment' ",
+        "query": "show tag values from influxdb_go_routines with key=\"hostname\" where environment_label =~ /^$environment$/ ",
         "refresh": 1,
         "refresh_on_load": true,
         "regex": "",
