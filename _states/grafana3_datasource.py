@@ -127,12 +127,20 @@ def present(name,
             ret['changes'] = None
             ret['comment'] = 'Data source {0} already up-to-date'.format(name)
     else:
-        requests.post(
-            '{0}/api/datasources'.format(profile['grafana_url']),
-            data,
-            headers=_get_headers(profile),
-            timeout=profile.get('grafana_timeout', 3),
-        )
+        if profile.get('grafana_token', False):
+            requests.post(
+                '{0}/api/datasources'.format(profile['grafana_url']),
+                data,
+                headers=_get_headers(profile),
+                timeout=profile.get('grafana_timeout', 3),
+            )
+        else:
+            requests.put(
+                '{0}/api/datasources'.format(profile['grafana_url']),
+                data,
+                auth=_get_auth(profile),
+                timeout=profile.get('grafana_timeout', 3),
+            )
         ret['result'] = True
         ret['comment'] = 'New data source {0} added'.format(name)
         ret['changes'] = data
