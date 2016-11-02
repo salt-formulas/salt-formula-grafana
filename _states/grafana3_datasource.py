@@ -135,7 +135,7 @@ def present(name,
                 timeout=profile.get('grafana_timeout', 3),
             )
         else:
-            requests.put(
+            requests.post(
                 '{0}/api/datasources'.format(profile['grafana_url']),
                 data,
                 auth=_get_auth(profile),
