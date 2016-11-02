@@ -19,9 +19,14 @@ grafana_client_datasource_{{ datasource_name }}:
   - access: proxy
   {%- endif %}
   {%- if datasource.user is defined %}
-  - basic_auth: true
-  - basic_auth_user: {{ datasource.user }}
-  - basic_auth_password: {{ datasource.password }}
+  - user: {{ datasource.user }}
+  - password: {{ datasource.password }}
+  {%- endif %}
+  {%- if datasource.get('is_default', false) %}
+  - is_default: {{ datasource.is_default }}
+  {%- endif %}
+  {%- if datasource.database is defined %}
+  - database: {{ datasource.database }}
   {%- endif %}
 
 {%- endfor %}
