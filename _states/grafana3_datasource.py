@@ -40,6 +40,7 @@ Basic auth setup
 '''
 from __future__ import absolute_import
 
+import json
 import requests
 
 from salt.ext.six import string_types
@@ -115,20 +116,13 @@ def present(name,
                           is_default=is_default)
 
     if datasource:
-        if profile.get('grafana_token', False):
-            requests.put(
-                _get_url(profile, datasource['id']),
-                data,
-                headers=_get_headers(profile),
-                timeout=profile.get('grafana_timeout', 3),
-            )
-        else:
-            requests.put(
-                _get_url(profile, datasource['id']),
-                data,
-                auth=_get_auth(profile),
-                timeout=profile.get('grafana_timeout', 3),
-            )
+        requests.put(
+            _get_url(profile, datasource['id']),
+            data=json.dumps(data),
+            auth=_get_auth(profile),
+            headers=_get_headers(profile),
+            timeout=profile.get('grafana_timeout', 3),
+        )
         ret['result'] = True
         ret['changes'] = _diff(datasource, data)
         if ret['changes']['new'] or ret['changes']['old']:
@@ -137,20 +131,13 @@ def present(name,
             ret['changes'] = None
             ret['comment'] = 'Data source {0} already up-to-date'.format(name)
     else:
-        if profile.get('grafana_token', False):
-            requests.post(
-                '{0}/api/datasources'.format(profile['grafana_url']),
-                data,
-                headers=_get_headers(profile),
-                timeout=profile.get('grafana_timeout', 3),
-            )
-        else:
-            requests.post(
-                '{0}/api/datasources'.format(profile['grafana_url']),
-                data,
-                auth=_get_auth(profile),
-                timeout=profile.get('grafana_timeout', 3),
-            )
+        requests.post(
+            '{0}/api/datasources'.format(profile['grafana_url']),
+            data=json.dumps(data),
+            auth=_get_auth(profile),
+            headers=_get_headers(profile),
+            timeout=profile.get('grafana_timeout', 3),
+        )
         ret['result'] = True
         ret['comment'] = 'New data source {0} added'.format(name)
         ret['changes'] = data
@@ -176,18 +163,12 @@ def absent(name, profile='grafana'):
         ret['comment'] = 'Data source {0} already absent'.format(name)
         return ret
 
-    if profile.get('grafana_token', False):
-        requests.delete(
-            _get_url(profile, datasource['id']),
-            headers=_get_headers(profile),
-            timeout=profile.get('grafana_timeout', 3),
-        )
-    else:
-        requests.delete(
-            _get_url(profile, datasource['id']),
-            auth=_get_auth(profile),
-            timeout=profile.get('grafana_timeout', 3),
-        )
+    requests.delete(
+        _get_url(profile, datasource['id']),
+        auth=_get_auth(profile),
+        headers=_get_headers(profile),
+        timeout=profile.get('grafana_timeout', 3),
+    )
 
     ret['result'] = True
     ret['comment'] = 'Data source {0} was deleted'.format(name)
@@ -203,18 +184,12 @@ def _get_url(profile, datasource_id):
 
 
 def _get_datasource(profile, name):
-    if profile.get('grafana_token', False):
-        response = requests.get(
-            '{0}/api/datasources'.format(profile['grafana_url']),
-            headers=_get_headers(profile),
-            timeout=profile.get('grafana_timeout', 3),
-        )
-    else:
-        response = requests.get(
-            '{0}/api/datasources'.format(profile['grafana_url']),
-            auth=_get_auth(profile),
-            timeout=profile.get('grafana_timeout', 3),
-        )
+    response = requests.get(
+        '{0}/api/datasources'.format(profile['grafana_url']),
+        auth=_get_auth(profile),
+        headers=_get_headers(profile),
+        timeout=profile.get('grafana_timeout', 3),
+    )
     data = response.json()
     for datasource in data:
         if datasource['name'] == name:
@@ -223,13 +198,19 @@ def _get_datasource(profile, name):
 
 
 def _get_headers(profile):
-    return {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer {0}'.format(profile['grafana_token'])
-    }
+
+    headers = {'Content-type': 'application/json'}
+
+    if profile.get('grafana_token', False):
+        headers['Authorization'] = 'Bearer {0}'.format(profile['grafana_token'])
+
+    return headers
 
 
 def _get_auth(profile):
+    if profile.get('grafana_token', False):
+        return None
+
     return requests.auth.HTTPBasicAuth(
         profile['grafana_user'],
         profile['grafana_password']
