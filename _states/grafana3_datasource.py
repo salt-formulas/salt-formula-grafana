@@ -8,8 +8,8 @@ Token auth setup
 
 .. code-block:: yaml
 
+    grafana_version: 3
     grafana:
-      grafana_version: 3
       grafana_timeout: 5
       grafana_token: qwertyuiop
       grafana_url: 'https://url.com'
@@ -18,8 +18,8 @@ Basic auth setup
 
 .. code-block:: yaml
 
+    grafana_version: 3
     grafana:
-      grafana_version: 3
       grafana_timeout: 5
       grafana_user: grafana
       grafana_password: qwertyuiop
@@ -61,9 +61,6 @@ def present(name,
             basic_auth_user='',
             basic_auth_password='',
             is_default=False,
-            type_logo_url='public/app/plugins/datasource/graphite/img/graphite_logo.png',
-            with_credentials=False,
-            json_data=None,
             profile='grafana'):
     '''
     Ensure that a data source is present.
@@ -74,6 +71,9 @@ def present(name,
     type
         Which type of data source it is ('graphite', 'influxdb' etc.).
 
+    access
+        Use proxy or direct. Default: proxy
+
     url
         The URL to the data source API.
 
@@ -82,6 +82,9 @@ def present(name,
 
     password
         Optional - password to authenticate with the data source
+
+    database
+        Optional - database to use with the data source
 
     basic_auth
         Optional - set to True to use HTTP basic auth to authenticate with the
@@ -94,15 +97,22 @@ def present(name,
         Optional - HTTP basic auth password.
 
     is_default
-        Default: False
+        Optional - Set data source as default. Default: False
     '''
     if isinstance(profile, string_types):
         profile = __salt__['config.option'](profile)
 
     ret = {'name': name, 'result': None, 'comment': None, 'changes': None}
     datasource = _get_datasource(profile, name)
-    data = _get_json_data(name, type, url, access, user, password, database,
-        basic_auth, basic_auth_user, basic_auth_password, is_default, json_data)
+    data = _get_json_data(name, type, url,
+                          access=access,
+                          user=user,
+                          password=password,
+                          database=database,
+                          basic_auth=basic_auth,
+                          basic_auth_user=basic_auth_user,
+                          basic_auth_password=basic_auth_password,
+                          is_default=is_default)
 
     if datasource:
         if profile.get('grafana_token', False):
@@ -237,9 +247,8 @@ def _get_json_data(name,
                    basic_auth_user='',
                    basic_auth_password='',
                    is_default=False,
-                   type_logo_url='public/app/plugins/datasource/graphite/img/graphite_logo.png',
-                   with_credentials=False,
-                   json_data=None):
+                   type_logo_url='public/app/plugins/datasource/influxdb/img/influxdb_logo.svg',
+                   with_credentials=False):
     return {
         'name': name,
         'type': type,
@@ -254,7 +263,6 @@ def _get_json_data(name,
         'isDefault': is_default,
         'typeLogoUrl': type_logo_url,
         'withCredentials': with_credentials,
-        'jsonData': json_data,
     }
 
 

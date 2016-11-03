@@ -23,7 +23,7 @@ grafana_client_datasource_{{ datasource_name }}:
   - password: {{ datasource.password }}
   {%- endif %}
   {%- if datasource.get('is_default', false) %}
-  - is_default: {{ datasource.is_default }}
+  - is_default: {{ datasource.is_default|lower }}
   {%- endif %}
   {%- if datasource.database is defined %}
   - database: {{ datasource.database }}
