@@ -2947,7 +2947,7 @@
         "includeAll": false,
         "name": "server",
         "options": [],
-        "query": "show tag values from pacemaker_local_resource_active with key = hostname where environment_label =~ /^$environment$/ ",
+        "query": "show tag values from haproxy_backend_servers with key = hostname where environment_label =~ /^$environment$/ ",
         "refresh": 1,
         "refresh_on_load": true,
         "regex": "",

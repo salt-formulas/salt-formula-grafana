@@ -3218,7 +3218,7 @@
         "includeAll": true,
         "name": "server",
         "options": [],
-        "query": "show tag values from pacemaker_local_resource_active with key = hostname where environment_label =~ /^$environment$/ ",
+        "query": "show tag values from openstack_glance_http_response_times with key = hostname where environment_label =~ /^$environment$/ ",
         "refresh": 1,
         "refresh_on_load": true,
         "regex": "",
