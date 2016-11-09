@@ -1,0 +1,10 @@
+{%- if pillar.grafana.server is defined %}
+{%- from "grafana/map.jinja" import server with context %}
+
+{%- if server.get('enabled', False) %}
+local_plugin:
+  collectd_processes:
+    process:
+      grafana-server: {}
+{%- endif %}
+{%- endif %}
