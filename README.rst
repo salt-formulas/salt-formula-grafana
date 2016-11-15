@@ -44,7 +44,9 @@ Server installed with PostgreSQL database
           user: grafana
           password: passwd
 
-Server installed with default StackLight JSON dashboards
+Server installed with default StackLight JSON dashboards. This will
+be replaced by the possibility for a service to provide its own dashboard
+using salt-mine.
 
 .. code-block:: yaml
 
@@ -202,7 +204,7 @@ The default format of Grafana dashboards with lists for rows, panels and targets
           span: 6
           editable: false
           type: graph
-          targets: 
+          targets:
           - refId: A
             target: "support_prd.cfg01_iot_tcpcloud_eu.cpu.0.idle"
           datasource: graphite01

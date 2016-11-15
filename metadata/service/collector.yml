@@ -1,0 +1,6 @@
+applications:
+- grafana
+parameters:
+  grafana:
+    collector:
+      enabled: true

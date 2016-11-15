@@ -65,6 +65,7 @@ def present(name,
             base_panels_from_pillar=None,
             base_rows_from_pillar=None,
             dashboard=None,
+            dashboard_format='yaml',
             profile='grafana'):
     '''
     Ensure the grafana dashboard exists and is managed.
@@ -84,18 +85,38 @@ def present(name,
     dashboard
         A dict that defines a dashboard that should be managed.
 
+    dashboard_format
+        You can use two formats for dashboards. You can use the JSON format
+        if you provide a complete dashboard in raw JSON or you can use the YAML
+        format (this is the default) and provide a description of the
+        dashboard in YAML.
+
     profile
         A pillar key or dict that contains grafana information
     '''
     ret = {'name': name, 'result': True, 'comment': '', 'changes': {}}
-
-    base_dashboards_from_pillar = base_dashboards_from_pillar or []
-    base_panels_from_pillar = base_panels_from_pillar or []
-    base_rows_from_pillar = base_rows_from_pillar or []
     dashboard = dashboard or {}
 
     if isinstance(profile, six.string_types):
         profile = __salt__['config.option'](profile)
+
+    if dashboard_format == 'json':
+        # In this case, a raw JSON of the full dashboard is provided.
+        response = _update(dashboard, profile)
+
+        if response.get('status') == 'success':
+            ret['comment'] = 'Dashboard {0} created.'.format(name)
+            ret['changes']['new'] = 'Dashboard {0} created.'.format(name)
+        else:
+            ret['result'] = False
+            ret['comment'] = ("Failed to create dashboard {0}, "
+                              "response={1}").format(name, response)
+
+        return ret
+
+    base_dashboards_from_pillar = base_dashboards_from_pillar or []
+    base_panels_from_pillar = base_panels_from_pillar or []
+    base_rows_from_pillar = base_rows_from_pillar or []
 
     # Add pillar keys for default configuration
     base_dashboards_from_pillar = ([_DEFAULT_DASHBOARD_PILLAR] +
@@ -439,18 +460,12 @@ def _delete(url, profile):
     '''Delete a specific dashboard.'''
     request_url = "{0}/api/dashboards/{1}".format(profile.get('grafana_url'),
                                                   url)
-    if profile.get('grafana_token', False):
-        response = requests.delete(
-            request_url,
-            headers=_get_headers(profile),
-            timeout=profile.get('grafana_timeout'),
-        )
-    else:
-        response = requests.delete(
-            request_url,
-            auth=_get_auth(profile),
-            timeout=profile.get('grafana_timeout'),
-        )
+    response = requests.delete(
+        request_url,
+        auth=_get_auth(profile),
+        headers=_get_headers(profile),
+        timeout=profile.get('grafana_timeout'),
+    )
     data = response.json()
     return data
 
@@ -461,30 +476,28 @@ def _update(dashboard, profile):
         'dashboard': dashboard,
         'overwrite': True
     }
-    request_url = "{0}/api/dashboards/db".format(profile.get('grafana_url'))
-    if profile.get('grafana_token', False):
-        response = requests.post(
-            request_url,
-            headers=_get_headers(profile),
-            json=payload
-        )
-    else:
-        response = requests.post(
-            request_url,
-            auth=_get_auth(profile),
-            json=payload
-        )
+    response = requests.post(
+        "{0}/api/dashboards/db".format(profile.get('grafana_url')),
+        auth=_get_auth(profile),
+        headers=_get_headers(profile),
+        json=payload
+    )
     return response.json()
 
 
 def _get_headers(profile):
-    return {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer {0}'.format(profile['grafana_token'])
-    }
+    headers = {'Content-type': 'application/json'}
+
+    if profile.get('grafana_token', False):
+        headers['Authorization'] = 'Bearer {0}'.format(profile['grafana_token'])
+
+    return headers
 
 
 def _get_auth(profile):
+    if profile.get('grafana_token', False):
+        return None
+
     return requests.auth.HTTPBasicAuth(
         profile['grafana_user'],
         profile['grafana_password']
