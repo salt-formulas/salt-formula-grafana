@@ -1,0 +1,6 @@
+applications:
+- grafana.client
+parameters:
+  grafana:
+    client:
+      enabled: true
