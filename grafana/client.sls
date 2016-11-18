@@ -1,5 +1,5 @@
 {%- from "grafana/map.jinja" import client with context %}
-{%- if client.enabled %}
+{%- if client.get('enabled', False) %}
 
 /etc/salt/minion.d/_grafana.conf:
   file.managed:
@@ -22,7 +22,7 @@ grafana_client_datasource_{{ datasource_name }}:
   - user: {{ datasource.user }}
   - password: {{ datasource.password }}
   {%- endif %}
-  {%- if datasource.get('is_default', false) %}
+  {%- if datasource.get('is_default', False) %}
   - is_default: {{ datasource.is_default|lower }}
   {%- endif %}
   {%- if datasource.database is defined %}
