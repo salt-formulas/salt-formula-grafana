@@ -1,5 +1,5 @@
 {%- from "grafana/map.jinja" import client with context %}
-{%- if client.enabled %}
+{%- if client.get('enabled', False) %}
 
 /etc/salt/minion.d/_grafana.conf:
   file.managed:
