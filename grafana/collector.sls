@@ -13,6 +13,7 @@ grafana_grains_dir:
 {# Loading the other service support metadata for localhost #}
 
 {%- for service_name, service in pillar.iteritems() %}
+{%- if service.get('_support', {}).get('grafana', {}).get('enabled', False) %}
 
 {%- macro load_grains_file(grains_fragment_file) %}{% include grains_fragment_file ignore missing %}{% endmacro %}
 
@@ -20,6 +21,7 @@ grafana_grains_dir:
 {%- set grains_yaml = load_grains_file(grains_fragment_file)|load_yaml %}
 {%- set service_grains = salt['grains.filter_by']({'default': service_grains}, merge=grains_yaml) %}
 
+{%- endif %}
 {%- endfor %}
 
 grafana_grain:
