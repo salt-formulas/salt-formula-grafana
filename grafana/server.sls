@@ -1,5 +1,5 @@
 {%- from "grafana/map.jinja" import server with context %}
-{%- if server.enabled %}
+{%- if server.get('enabled', False) %}
 
 grafana_packages:
   pkg.installed:

@@ -1,5 +1,5 @@
 {%- from "grafana/map.jinja" import collector with context %}
-{%- if collector.enabled %}
+{%- if collector.get('enabled', False) %}
 
 grafana_grains_dir:
   file.directory:
