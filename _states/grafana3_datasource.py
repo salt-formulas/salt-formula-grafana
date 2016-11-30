@@ -197,6 +197,8 @@ def _get_datasource(profile, name):
             auth=_get_auth(profile),
             timeout=profile.get('grafana_timeout', 3),
         )
+    if response.status_code >= 400:
+        response.raise_for_status()
     data = response.json()
     for datasource in data:
         if datasource['name'] == name:
