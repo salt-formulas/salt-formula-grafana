@@ -1,9 +1,18 @@
 {%- from "grafana/map.jinja" import server with context %}
 {%- if server.enabled %}
 
+grafana package repository:
+  pkgrepo.managed:
+    - name: deb https://packagecloud.io/grafana/stable/debian/ {{ grains["oscodename"] }} main
+    - keyid: 59097AB
+    - keyserver: hkp://p80.pool.sks-keyservers.net:80
+    - file: /etc/apt/sources.list.d/grafana.list
+    - refresh_db: True
+
 grafana_packages:
   pkg.installed:
   - names: {{ server.pkgs }}
+  - pkgrepo: grafana package repository
 
 /etc/grafana/grafana.ini:
   file.managed:
