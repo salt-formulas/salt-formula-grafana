@@ -4,7 +4,7 @@
 grafana package repository:
   pkgrepo.managed:
     - name: deb https://packagecloud.io/grafana/stable/debian/ {{ grains["oscodename"] }} main
-    - keyid: 59097AB
+    - keyid: 418A7F2FB0E1E6E7EABF6FE8C2E73424D59097AB
     - keyserver: hkp://p80.pool.sks-keyservers.net:80
     - file: /etc/apt/sources.list.d/grafana.list
     - refresh_db: True
