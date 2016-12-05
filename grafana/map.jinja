@@ -11,6 +11,16 @@ Debian:
     engine: file
   auth:
     engine: application
+    ldap:
+      enabled: false
+      host: '127.0.0.1'
+      port: 389
+      use_ssl: false
+      bind_dn: "cn=admin,dc=grafana,dc=org"
+      bind_password: "grafana"
+      user_search_filter: "(cn=%s)"
+      user_search_base_dns:
+      - "dc=grafana,dc=org"
   admin:
     user: admin
     password: admin

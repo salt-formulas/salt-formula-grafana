@@ -14,6 +14,20 @@ grafana_packages:
   - require:
     - pkg: grafana_packages
 
+{%- if server.auth.get('ldap', {}).get('enabled', False) %}
+/etc/grafana/ldap.toml:
+  file.managed:
+  - source: salt://grafana/files/ldap.toml
+  - template: jinja
+  - user: grafana
+  - group: grafana
+  - require:
+    - pkg: grafana_packages
+  - watch_in:
+    - service: grafana_service
+{%- endif %}
+
+
 {%- if server.dashboards.enabled %}
 
 grafana_copy_default_dashboards:

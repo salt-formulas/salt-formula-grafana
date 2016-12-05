@@ -44,6 +44,83 @@ Server installed with PostgreSQL database
           user: grafana
           password: passwd
 
+Server installed with LDAP authentication and all authenticated users are
+administrators
+
+.. code-block:: yaml
+
+    grafana:
+      server:
+        enabled: true
+        admin:
+          user: admin
+          password: passwd
+        auth:
+          ldap:
+            enabled: true
+            host: '127.0.0.1'
+            port: 389
+            use_ssl: false
+            bind_dn: "cn=admin,dc=grafana,dc=org"
+            bind_password: "grafana"
+            user_search_filter: "(cn=%s)"
+            user_search_base_dns:
+            - "dc=grafana,dc=org"
+
+Server installed with LDAP and basic authentication
+
+.. code-block:: yaml
+
+    grafana:
+      server:
+        enabled: true
+        admin:
+          user: admin
+          password: passwd
+        auth:
+          basic:
+            enabled: true
+          ldap:
+            enabled: true
+            host: '127.0.0.1'
+            port: 389
+            use_ssl: false
+            bind_dn: "cn=admin,dc=grafana,dc=org"
+            bind_password: "grafana"
+            user_search_filter: "(cn=%s)"
+            user_search_base_dns:
+            - "dc=grafana,dc=org"
+
+Server installed with LDAP for authentication and authorization
+
+.. code-block:: yaml
+
+    grafana:
+      server:
+        enabled: true
+        admin:
+          user: admin
+          password: passwd
+        auth:
+          ldap:
+            enabled: true
+            host: '127.0.0.1'
+            port: 389
+            use_ssl: false
+            bind_dn: "cn=admin,dc=grafana,dc=org"
+            bind_password: "grafana"
+            user_search_filter: "(cn=%s)"
+            user_search_base_dns:
+            - "dc=grafana,dc=org"
+            group_search_filter: "(&(objectClass=posixGroup)(memberUid=%s))"
+            group_search_base_dns:
+            - "ou=groups,dc=grafana,dc=org"
+            authorization:
+              enabled: true
+              admin_group: "admins"
+              editor_group: "editors"
+              viewer_group: "viewers"
+
 Server installed with default StackLight JSON dashboards. This will
 be replaced by the possibility for a service to provide its own dashboard
 using salt-mine.
