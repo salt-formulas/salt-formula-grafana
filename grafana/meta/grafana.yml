@@ -1,45 +1,4 @@
-{%- if pillar.get('grafana').collector is defined %}
 dashboard:
-  test-single-{{ grains.host }}:
-    title: Dashboard single {{ grains.host }}
-    editable: true
-    hideControls: false
-    row:
-      single:
-        title: Single row
-        height: 250px
-        showTitle: true
-        panel:
-          first:
-            title: Single Panel
-            span: 8
-            editable: false
-            type: graph
-            target:
-              A:
-                refId: A
-                target: "support_prd.cfg01_iot_tcpcloud_eu.cpu.0.idle"
-            datasource: graphite01
-            renderer: flot
-  test-merge:
-    title: Dashboard merge
-    editable: true
-    hideControls: false
-    row:
-      merge:
-        showTitle: true
-        title: Merge
-        height: 250px
-        panel:
-          merge:
-            title: Merge Panel
-            span: 8
-            editable: false
-            type: graph
-            target:
-              {{ grains.host }}:
-                refId: A
-                target: "support_prd.cfg01_iot_tcpcloud_eu.cpu.0.idle"
-            datasource: graphite01
-            renderer: flot
-{%- endif %}
+  main:
+    format: json
+    template: grafana/files/grafana_dashboards/main_influxdb.json
