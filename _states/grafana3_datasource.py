@@ -254,8 +254,8 @@ def _diff(old, new):
     for key in old_keys:
         if key == 'id' or key == 'orgId':
             del old[key]
-        # New version of Grafana can introduce new keys that are not present
-        # in _get_json_data. So we use get for new.
+        # New versions of Grafana can introduce new keys that are not present
+        # in _get_json_data.
         elif key in new and old[key] == new[key]:
             del old[key]
             del new[key]
