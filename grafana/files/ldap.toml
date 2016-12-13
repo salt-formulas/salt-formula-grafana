@@ -70,11 +70,11 @@ group_search_base_dns = {{ ldap_params.group_search_base_dns }}
 {%- endif %}
 
 [servers.attributes]
-name = "givenName"
-surname = "sn"
-username = "cn"
-member_of = "memberOf"
-email =  "email"
+name      = "{{ ldap_params.servers.attributes.name }}"
+surname   = "{{ ldap_params.servers.attributes.surname }}"
+username  = "{{ ldap_params.servers.attributes.username }}"
+member_of = "{{ ldap_params.servers.attributes.member_of }}"
+email     = "{{ ldap_params.servers.attributes.email }}"
 
 {%- if ldap_params.get('authorization', {}).get('enabled', False) %}
 

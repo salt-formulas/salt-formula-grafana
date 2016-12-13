@@ -21,6 +21,13 @@ Debian:
       user_search_filter: "(cn=%s)"
       user_search_base_dns:
       - "dc=grafana,dc=org"
+      servers:
+        attributes:
+          name: "givenName"
+          surname: "sn"
+          username: "cn"
+          member_of: "memberOf"
+          email: "email"
   admin:
     user: admin
     password: admin
