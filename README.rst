@@ -13,13 +13,17 @@ Sample pillars
 Server deployments
 ------------------
 
-Server installed from system package
+Server installed from system package and listening on 1.2.3.4:3000 (the default
+is 0.0.0.0:3000)
 
 .. code-block:: yaml
 
     grafana:
       server:
         enabled: true
+        bind:
+          address: 1.2.3.4
+          port: 3000
         admin:
           user: admin
           password: passwd
