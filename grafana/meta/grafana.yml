@@ -1,4 +1,7 @@
 dashboard:
+  grafana:
+    format: json
+    template: grafana/files/grafana_dashboards/grafana_influxdb.json
   main:
     format: json
     template: grafana/files/grafana_dashboards/main_influxdb.json
