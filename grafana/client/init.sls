@@ -76,6 +76,15 @@ grafana_client_dashboard_{{ dashboard_name }}:
   - dashboard_format: json
     {%- else %}
   - dashboard: {{ dashboard }}
+      {%- if dashboard.base_dashboards is defined %}
+  - base_dashboards_from_pillar: {{ dashboard.base_dashboards|yaml }}
+      {%- endif %}
+      {%- if dashboard.base_rows is defined %}
+  - base_rows_from_pillar: {{ dashboard.base_rows|yaml }}
+      {%- endif %}
+      {%- if dashboard.base_panels is defined %}
+  - base_panels_from_pillar: {{ dashboard.base_panels|yaml }}
+      {%- endif %}
     {%- endif %}
   {%- else %}
 grafana_client_dashboard_{{ dashboard_name }}:
