@@ -128,7 +128,8 @@ def present(name,
     # Build out all dashboard fields
     new_dashboard = _inherited_dashboard(
         dashboard, base_dashboards_from_pillar, ret)
-    new_dashboard['title'] = name
+    if not new_dashboard.get('title'):
+        new_dashboard['title'] = name
     rows = new_dashboard.get('rows', [])
     for i, row in enumerate(rows):
         rows[i] = _inherited_row(row, base_rows_from_pillar, ret)
