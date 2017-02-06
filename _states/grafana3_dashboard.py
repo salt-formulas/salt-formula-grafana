@@ -134,7 +134,7 @@ def present(name,
         rows[i] = _inherited_row(row, base_rows_from_pillar, ret)
     for row in rows:
         panels = row.get('panels', [])
-        for i, panel in enumerate(panels):
+        for i, panel in enumerate(sorted(panels)):
             panels[i] = _inherited_panel(panel, base_panels_from_pillar, ret)
     _auto_adjust_panel_spans(new_dashboard)
     _ensure_panel_ids(new_dashboard)
