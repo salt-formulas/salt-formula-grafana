@@ -1,0 +1,7 @@
+check:
+  local_grafana_server_proc:
+    command: "PATH=$PATH:/usr/lib64/nagios/plugins:/usr/lib/nagios/plugins check_procs -C grafana-server -u grafana -c 1:1"
+    interval: 30
+    occurences: 3
+    subscribers:
+    - local-grafana-server
