@@ -83,7 +83,7 @@
               ],
               "measurement": "lma_components_threads",
               "policy": "default",
-              "query": "SELECT last(\"value\") FROM \"lma_components_threads\" WHERE \"service\" = 'grafana-server' AND \"hostname\" =~ /$server$/ AND $timeFilter GROUP BY time($interval)",
+              "query": "SELECT last(\"value\") FROM \"lma_components_threads\" WHERE \"service\" = 'grafana-server' AND \"hostname\" =~ /^$server$/ AND $timeFilter GROUP BY time($interval)",
               "refId": "A",
               "resultFormat": "time_series",
               "select": [
@@ -110,7 +110,13 @@
                   "condition": "AND",
                   "key": "hostname",
                   "operator": "=~",
-                  "value": "/$server$/"
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "environment_label",
+                  "operator": "=~",
+                  "value": "/^$environment$/"
                 }
               ]
             }
@@ -182,7 +188,7 @@
               ],
               "measurement": "lma_components_memory_rss",
               "policy": "default",
-              "query": "SELECT mean(\"value\") FROM \"lma_components_memory_rss\" WHERE \"service\" = 'grafana-server' AND \"hostname\" =~ /$server$/ AND $timeFilter GROUP BY time($interval) fill(0)",
+              "query": "SELECT mean(\"value\") FROM \"lma_components_memory_rss\" WHERE \"service\" = 'grafana-server' AND \"hostname\" =~ /^$server$/ AND $timeFilter GROUP BY time($interval) fill(0)",
               "refId": "A",
               "resultFormat": "time_series",
               "select": [
@@ -209,7 +215,13 @@
                   "condition": "AND",
                   "key": "hostname",
                   "operator": "=~",
-                  "value": "/$server$/"
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "environment_label",
+                  "operator": "=~",
+                  "value": "/^$environment$/"
                 }
               ]
             }
@@ -302,7 +314,7 @@
               ],
               "measurement": "lma_components_disk_bytes_read",
               "policy": "default",
-              "query": "SELECT mean(\"value\") FROM \"lma_components_disk_bytes_read\" WHERE \"service\" = 'grafana-server' AND \"hostname\" =~ /$server$/ AND $timeFilter GROUP BY time($interval) fill(0)",
+              "query": "SELECT mean(\"value\") FROM \"lma_components_disk_bytes_read\" WHERE \"service\" = 'grafana-server' AND \"hostname\" =~ /^$server$/ AND $timeFilter GROUP BY time($interval) fill(0)",
               "refId": "A",
               "resultFormat": "time_series",
               "select": [
@@ -329,7 +341,13 @@
                   "condition": "AND",
                   "key": "hostname",
                   "operator": "=~",
-                  "value": "/$server$/"
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "environment_label",
+                  "operator": "=~",
+                  "value": "/^$environment$/"
                 }
               ]
             },
@@ -354,7 +372,7 @@
               ],
               "measurement": "lma_components_disk_bytes_write",
               "policy": "default",
-              "query": "SELECT mean(\"value\") FROM \"lma_components_disk_bytes_write\" WHERE \"service\" = 'grafana-server' AND \"hostname\" =~ /$server$/ AND $timeFilter GROUP BY time($interval) fill(0)",
+              "query": "SELECT mean(\"value\") FROM \"lma_components_disk_bytes_write\" WHERE \"service\" = 'grafana-server' AND \"hostname\" =~ /^$server$/ AND $timeFilter GROUP BY time($interval) fill(0)",
               "refId": "B",
               "resultFormat": "time_series",
               "select": [
@@ -381,7 +399,13 @@
                   "condition": "AND",
                   "key": "hostname",
                   "operator": "=~",
-                  "value": "/$server$/"
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "environment_label",
+                  "operator": "=~",
+                  "value": "/^$environment$/"
                 }
               ]
             }
@@ -474,7 +498,7 @@
               ],
               "measurement": "lma_components_cputime_syst",
               "policy": "default",
-              "query": "SELECT mean(\"value\") FROM \"lma_components_cputime_syst\" WHERE \"service\" = 'grafana-server' AND \"hostname\" =~ /$server$/ AND $timeFilter GROUP BY time($interval) fill(0)",
+              "query": "SELECT mean(\"value\") FROM \"lma_components_cputime_syst\" WHERE \"service\" = 'grafana-server' AND \"hostname\" =~ /^$server$/ AND $timeFilter GROUP BY time($interval) fill(0)",
               "refId": "A",
               "resultFormat": "time_series",
               "select": [
@@ -501,7 +525,13 @@
                   "condition": "AND",
                   "key": "hostname",
                   "operator": "=~",
-                  "value": "/$server$/"
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "environment_label",
+                  "operator": "=~",
+                  "value": "/^$environment$/"
                 }
               ]
             },
@@ -526,7 +556,7 @@
               ],
               "measurement": "lma_components_cputime_user",
               "policy": "default",
-              "query": "SELECT mean(\"value\") FROM \"lma_components_cputime_user\" WHERE \"service\" = 'grafana-server' AND \"hostname\" =~ /$server$/ AND $timeFilter GROUP BY time($interval) fill(0)",
+              "query": "SELECT mean(\"value\") FROM \"lma_components_cputime_user\" WHERE \"service\" = 'grafana-server' AND \"hostname\" =~ /^$server$/ AND $timeFilter GROUP BY time($interval) fill(0)",
               "refId": "B",
               "resultFormat": "time_series",
               "select": [
@@ -553,7 +583,13 @@
                   "condition": "AND",
                   "key": "hostname",
                   "operator": "=~",
-                  "value": "/$server$/"
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "environment_label",
+                  "operator": "=~",
+                  "value": "/^$environment$/"
                 }
               ]
             }
@@ -683,5 +719,5 @@
   },
   "timezone": "browser",
   "title": "Grafana",
-  "version": 1
+  "version": 2
 }
