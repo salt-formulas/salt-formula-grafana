@@ -155,6 +155,18 @@ Server with theme overrides
             css_override:
               source: salt://path.to.theme
 
+Server with two additionals plugins. It requires to have access to the Internet.
+
+.. code-block:: yaml
+
+    grafana:
+      server:
+        enabled: true
+        plugins:
+          grafana-piechart-panel:
+            enabled: true
+          grafana-example-app:
+            enabled: true
 
 Collector setup
 ---------------

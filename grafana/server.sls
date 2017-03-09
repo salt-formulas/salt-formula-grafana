@@ -79,4 +79,15 @@ grafana_service:
   - watch:
     - file: /etc/grafana/grafana.ini
 
+{%- for plugin_name, plugin in server.get('plugins', {}).iteritems() %}
+{%- if plugin.get('enabled', False) %}
+install_{{ plugin_name }}:
+  cmd.run:
+  - name: grafana-cli plugins install {{ plugin_name }}
+  - unless: grafana-cli plugins list-versions {{ plugin_name }}
+  - watch_in:
+    - service: grafana_service
+{%- endif %}
+{%- endfor %}
+
 {%- endif %}
