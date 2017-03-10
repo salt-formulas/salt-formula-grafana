@@ -7,3 +7,8 @@ dashboard:
     base_dashboards: ['grafana:client:base_templates:main_dashboard']
     base_rows: ['grafana:client:base_templates:service_row']
     base_panels: ['grafana:client:base_templates:cluster_status_singlestat']
+  service_level:
+    format: yaml
+    base_dashboards: ['grafana:client:base_templates:service_level_dashboard']
+    base_rows: ['grafana:client:base_templates:service_level_row']
+    base_panels: ['grafana:client:base_templates:service_level_piechart']
