@@ -84,7 +84,7 @@ grafana_service:
 install_{{ plugin_name }}:
   cmd.run:
   - name: grafana-cli plugins install {{ plugin_name }}
-  - unless: grafana-cli plugins list-versions {{ plugin_name }}
+  - unless: grafana-cli plugins ls | grep {{ plugin_name }}
   - watch_in:
     - service: grafana_service
 {%- endif %}
