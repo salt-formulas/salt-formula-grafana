@@ -66,3 +66,42 @@ parameters:
               text: "DOWN"
               value: "4"
           valueName: current
+        service_level_dashboard:
+          title: 'Service Level Indicators'
+          editable: true
+          hideControls: false
+          templating:
+            enable: true
+            list:
+            - allFormat: regex values
+              hide: 0
+              includeAll: false
+              name: environment
+              options: []
+              query: show tag values from cpu_idle with key = environment_label
+              refresh: 1
+              refresh_on_load: true
+              regex: ''
+              type: query
+              sort: 0
+              multi: false
+        service_level_row:
+          showTitle: true
+          height: 200px
+        service_level_piechart:
+          span: 3
+          type: 'grafana-piechart-panel'
+          legend:
+            percentage: true
+            show: true
+            sortDesc: true
+            values: true
+          legendType: Under graph
+          aliasColors:
+            Healthy: "#7EB26D"
+            Up: "#7EB26D"
+            Okay: "#7EB26D"
+            Degraded or Unknwon: "#EAB839"
+            Down: "#890F02"
+            Error: "#890F02"
+            Fatal: "#890F02"
