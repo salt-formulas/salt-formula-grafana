@@ -7,7 +7,4 @@ include:
 {%- if pillar.grafana.client is defined %}
 - grafana.client
 {%- endif %}
-{%- if pillar.grafana.collector is defined %}
-- grafana.collector
-{%- endif %}
 {%- endif %}
