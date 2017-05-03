@@ -1,16 +1,16 @@
+{%- if pillar.grafana.collector is defined %}
+  {%- if pillar.grafana.collector.get('enabled', False) %}
+    {%- set service_grains = {} %}
+    {%- for service_name, service in pillar.iteritems() %}
+      {%- if service.get('_support', {}).get('grafana', {}).get('enabled', False) %}
+        {%- macro load_grains_file(grains_fragment_file) %}{% include grains_fragment_file ignore missing %}{% endmacro %}
+        {%- set grains_fragment_file = service_name+'/meta/grafana.yml' %}
+        {%- set grains_yaml = load_grains_file(grains_fragment_file)|load_yaml %}
+        {%- set service_grains = salt['grains.filter_by']({'default': service_grains}, merge=grains_yaml) %}
+      {%- endif %}
+    {%- endfor %}
 grain:
-  {%- if pillar.grafana.collector is defined %}
-    {%- if collector.get('enabled', False) %}
-      {%- set service_grains = {} %}
-      {%- for service_name, service in pillar.iteritems() %}
-        {%- if service.get('_support', {}).get('grafana', {}).get('enabled', False) %}
-          {%- macro load_grains_file(grains_fragment_file) %}{% include grains_fragment_file ignore missing %}{% endmacro %}
-          {%- set grains_fragment_file = service_name+'/meta/grafana.yml' %}
-          {%- set grains_yaml = load_grains_file(grains_fragment_file)|load_yaml %}
-          {%- set service_grains = salt['grains.filter_by']({'default': service_grains}, merge=grains_yaml) %}
-        {%- endif %}
-      {%- endfor %}
   grafana:
     {{ service_grains|yaml(False)|indent(4) }}
-    {%- endif %}
   {%- endif %}
+{%- endif %}
