@@ -8,7 +8,7 @@ include:
 
 grafana_client_datasource_{{ datasource_name }}:
   grafana3_datasource.present:
-  - name: {{ datasource_name }}
+  - name: {{ datasource.name|default(datasource_name) }}
   - type: {{ datasource.type }}
   - url: http://{{ datasource.host }}:{{ datasource.get('port', 80) }}
   {%- if datasource.access is defined %}
