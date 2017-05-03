@@ -14,3 +14,19 @@ grain:
     {{ service_grains|yaml(False)|indent(4) }}
   {%- endif %}
 {%- endif %}
+
+minion:
+  {%- if pillar.grafana.client is defined %}
+  grafana:
+    {%- from "grafana/map.jinja" import client with context %}
+    grafana_version: {{ client.server.get('version', 3) }}
+    grafana:
+      grafana_timeout: 3
+      {%- if client.server.token is defined %}
+      grafana_token: {{ client.server.token }}
+      {%- else %}
+      grafana_user: {{ client.server.user }}
+      grafana_password: {{ client.server.password }}
+      {%- endif %}
+      grafana_url: '{{ client.server.get('protocol', 'http') }}://{{ client.server.host }}:{{ client.server.get('port', 80) }}'
+  {%- endif %}

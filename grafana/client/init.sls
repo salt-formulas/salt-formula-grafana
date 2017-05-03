@@ -1,9 +1,6 @@
 {%- from "grafana/map.jinja" import client with context %}
 {%- if client.get('enabled', False) %}
 
-include:
-  - grafana.client.service
-
 {%- for datasource_name, datasource in client.datasource.iteritems() %}
 
 grafana_client_datasource_{{ datasource_name }}:
