@@ -1,4 +1,4 @@
-{%- if pillar.grafana.collector is defined %}
+{%- if pillar.get('grafana', {}).get('collector') %}
   {%- if pillar.grafana.collector.get('enabled', False) %}
     {%- set service_grains = {} %}
     {%- for service_name, service in pillar.iteritems() %}
