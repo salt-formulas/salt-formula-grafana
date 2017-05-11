@@ -11,7 +11,8 @@
     {%- endfor %}
 grain:
   grafana:
-    {{ service_grains|yaml(False)|indent(4) }}
+    grafana:
+      {{ service_grains|yaml(False)|indent(6) }}
   {%- endif %}
 {%- endif %}
 
