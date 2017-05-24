@@ -1,8 +1,10 @@
 {%- from "grafana/map.jinja" import client with context %}
 {%- if client.get('enabled', False) %}
 
+{%- set datasources = [] %}
 {%- for datasource_name, datasource in client.datasource.iteritems() %}
 
+{%- do datasources.append(datasource.type) %}
 grafana_client_datasource_{{ datasource_name }}:
   grafana3_datasource.present:
   - name: {{ datasource.name|default(datasource_name) }}
@@ -63,6 +65,7 @@ grafana_client_datasource_{{ datasource_name }}:
 {%- endfor %}
 
 {%- for dashboard_name, dashboard in final_dict.iteritems() %}
+{%- if dashboard.datasource is not defined or dashboard.datasource in datasources %}
   {%- if dashboard.get('enabled', True) %}
 grafana_client_dashboard_{{ dashboard_name }}:
   grafana3_dashboard.present:
@@ -88,6 +91,7 @@ grafana_client_dashboard_{{ dashboard_name }}:
   grafana3_dashboard.absent:
   - name: {{ dashboard_name }}
   {%- endif %}
+{%- endif %}
 {%- endfor %}
 
 {%- endif %}
