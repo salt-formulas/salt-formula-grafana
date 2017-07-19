@@ -1,6 +1,13 @@
 {%- from "grafana/map.jinja" import server with context %}
 {%- if server.get('enabled', False) %}
 
+grafana_repo:
+  pkgrepo.managed:
+  - human_name: Grafana
+  - name: deb https://packagecloud.io/grafana/stable/debian/ jessie main
+  - file: /etc/apt/sources.list.d/grafana.list
+  - key_url: https://packagecloud.io/gpg.key
+  
 grafana_packages:
   pkg.installed:
   - names: {{ server.pkgs }}
