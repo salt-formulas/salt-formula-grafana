@@ -4,6 +4,9 @@ Debian:
   pkgs:
   - grafana
   service: grafana-server
+  paths:
+    data: /var/lib/grafana
+    logs: /var/log/grafana
   bind:
     address: 0.0.0.0
     port: 3000
