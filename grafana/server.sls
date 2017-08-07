@@ -28,6 +28,14 @@ grafana_packages:
 {%- endif %}
 
 
+/etc/default/grafana-server:
+  file.managed:
+  - name: /etc/default/grafana-server
+  - source: salt://grafana/files/default
+  - template: jinja
+  - require:
+    - pkg: grafana_packages
+
 {%- if server.dashboards.enabled %}
 
 grafana_copy_default_dashboards:
@@ -69,6 +77,20 @@ grafana_{{ theme_name }}_css_override:
 
 {%- endfor %}
 
+{{server.path.data}}:
+  file.directory:
+    - makedirs: True
+    - mode: 755
+    - user: {{ server.user }}
+    - group: {{ server.group }}
+
+{{server.path.logs}}:
+  file.directory:
+    - makedirs: True
+    - mode: 755
+    - user: {{ server.user }}
+    - group: {{ server.group }}
+
 grafana_service:
   service.running:
   - name: {{ server.service }}
@@ -78,6 +100,7 @@ grafana_service:
   - init_delay: 5
   - watch:
     - file: /etc/grafana/grafana.ini
+    - file: /etc/default/grafana-server
 
 {%- for plugin_name, plugin in server.get('plugins', {}).iteritems() %}
 {%- if plugin.get('enabled', False) %}

@@ -1,0 +1,20 @@
+{%- from "grafana/map.jinja" import server with context %}
+GRAFANA_USER={{ server.user }}
+
+GRAFANA_GROUP={{ server.group }}
+
+GRAFANA_HOME=/usr/share/grafana
+
+LOG_DIR={{ server.path.logs }}
+
+DATA_DIR={{ server.path.data }}
+
+MAX_OPEN_FILES=10000
+
+CONF_DIR=/etc/grafana
+
+CONF_FILE=/etc/grafana/grafana.ini
+
+RESTART_ON_UPGRADE=true
+
+PLUGINS_DIR={{ server.path.data }}/plugins

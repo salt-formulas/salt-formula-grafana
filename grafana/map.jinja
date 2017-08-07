@@ -4,7 +4,10 @@ Debian:
   pkgs:
   - grafana
   service: grafana-server
-  paths:
+  user: grafana
+  group: grafana
+  path:
+    home: /usr/share/grafana
     data: /var/lib/grafana
     logs: /var/log/grafana
   bind:
