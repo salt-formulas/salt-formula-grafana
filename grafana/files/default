@@ -19,4 +19,5 @@ RESTART_ON_UPGRADE=true
 
 PLUGINS_DIR={{ server.path.data }}/plugins
 
-PID_FILE={{ server.path.pidfile }}
+# Only used on systemd systems
+PID_FILE_DIR={{ server.path.pid_file_dir }}
