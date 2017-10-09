@@ -27,6 +27,50 @@ parameters:
         service_row:
           showTitle: true
           height: 100px
+        prometheus_main_dashboard:
+          title: 'Main'
+          editable: true
+          hideControls: false
+        prometheus_cluster_status:
+          span: 2
+          editable: false
+          type: singlestat
+          prefixFontSize: "50%"
+          postfixFontSize: "50%"
+          colorBackground: true
+          colors:
+            - "rgba(225, 40, 40, 0.59)"
+            - "rgba(245, 150, 40, 0.73)"
+            - "rgba(71, 212, 59, 0.4)"
+          thresholds: "0.01,1"
+          interval: "> 60s"
+          sparkline:
+            fillColor: "rgba(31, 118, 189, 0.18)"
+            full: false
+            lineColor: "rgb(31, 120, 193)"
+            show: false
+          valueFontSize: "50%"
+          mappingType: 2
+          rangeMaps:
+            - from: "null"
+              text: "no data"
+              to: "null"
+            - from: "0"
+              text: "DOWN"
+              to: "0"
+            - from: "0.01"
+              text: "CRIT"
+              to: "0.5"
+            - from: "0.51"
+              text: "WARN"
+              to: "0.99"
+            - from: "1"
+              text: "UP"
+              to: "1"
+            - from: "2"
+              text: "UNKW"
+              to: "2"
+          valueName: current
         cluster_status_singlestat:
           span: 2
           editable: false
@@ -101,7 +145,7 @@ parameters:
             Healthy: "#7EB26D"
             Up: "#7EB26D"
             Okay: "#7EB26D"
-            Degraded or Unknwon: "#EAB839"
+            Degraded or Unknown: "#EAB839"
             Down: "#890F02"
             Error: "#890F02"
             Fatal: "#890F02"
