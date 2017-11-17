@@ -48,14 +48,6 @@ Debian:
     static: /usr/share/grafana/public
   dashboards:
     enabled: false
-  external_image_storage:
-    provider: ""
-    bucket_url: ""
-    bucket: ""
-    region: ""
-    path: ""
-    access_key: ""
-    secret_key: ""
 {%- endload %}
 
 {%- set server = salt['grains.filter_by'](server_defaults, merge=salt['pillar.get']('grafana:server')) %}
