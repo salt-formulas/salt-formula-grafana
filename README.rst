@@ -28,7 +28,7 @@ is 0.0.0.0:3000)
           user: admin
           password: passwd
         database:
-          engine: sqlite
+          engine: sqlite3
 
 Server installed with PostgreSQL database
 
