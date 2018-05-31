@@ -28,17 +28,22 @@ grafana_client_datasource_{{ datasource_name }}:
 
 {%- set raw_dict = {} %}
 {%- set final_dict = {} %}
+{%- set parameters = {} %}
 
 {%- if client.remote_data.engine == 'salt_mine' %}
 {%- for node_name, node_grains in salt['mine.get']('*', 'grains.items').iteritems() %}
   {%- if node_grains.grafana is defined %}
   {%- set raw_dict = salt['grains.filter_by']({'default': raw_dict}, merge=node_grains.grafana.get('dashboard', {})) %}
+  {%- set parameters = salt['grains.filter_by']({'default': parameters}, merge=node_grains.grafana.get('parameters', {})) %}
   {%- endif %}
 {%- endfor %}
 {%- endif %}
 
 {%- if client.dashboard is defined %}
   {%- set raw_dict = salt['grains.filter_by']({'default': raw_dict}, merge=client.dashboard) %}
+{%- endif %}
+{%- if client.parameters is defined %}
+  {%- set parameters = salt['grains.filter_by']({'default': parameters}, merge=client.parameters) %}
 {%- endif %}
 
 {%- for dashboard_name, dashboard in raw_dict.iteritems() %}
@@ -71,7 +76,8 @@ grafana_client_dashboard_{{ dashboard_name }}:
   grafana3_dashboard.present:
   - name: {{ dashboard_name }}
     {%- if dashboard.get('format', 'yaml')|lower == 'json' %}
-    {%- import_json dashboard.template as dash %}
+    {%- import dashboard.template as dashboard_template with context %}
+    {%- set dash = dashboard_template|load_json %}
   - dashboard: {{ dash|json }}
   - dashboard_format: json
     {%- else %}
