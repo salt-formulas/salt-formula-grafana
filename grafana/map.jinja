@@ -11,9 +11,11 @@ Debian:
     data: /var/lib/grafana
     logs: /var/log/grafana
     pid_file_dir: /var/run/grafana
+  protocol: http
   bind:
     address: 0.0.0.0
     port: 3000
+  domain: localhost
   session:
     engine: file
   auth:
