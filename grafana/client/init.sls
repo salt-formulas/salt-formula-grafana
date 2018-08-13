@@ -9,7 +9,11 @@ grafana_client_datasource_{{ datasource_name }}:
   grafana3_datasource.present:
   - name: {{ datasource.name|default(datasource_name) }}
   - type: {{ datasource.type }}
-  - url: http://{{ datasource.host }}:{{ datasource.get('port', 80) }}
+  {%- if datasource.port is defined %}
+  - url: {{ datasource.get('protocol', 'http') }}://{{ datasource.host }}:{{ datasource.port }}{{ datasource.get('url_path', '') }}
+  {%- else %}
+  - url: {{ datasource.get('protocol', 'http') }}://{{ datasource.host }}{{ datasource.get('url_path', '') }}
+  {%- endif %}
   {%- if datasource.access is defined %}
   - access: proxy
   {%- endif %}
@@ -22,6 +26,13 @@ grafana_client_datasource_{{ datasource_name }}:
   {%- endif %}
   {%- if datasource.database is defined %}
   - database: {{ datasource.database }}
+  {%- endif %}
+  {%- if datasource.mode is defined %}
+  - mode: {{ datasource.mode }}
+    {%- if datasource.mode == 'keystone' %}
+  - domain: {{ datasource.get('domain', 'default') }}
+  - project: {{ datasource.get('project', 'service') }}
+    {%- endif %}
   {%- endif %}
 
 {%- endfor %}
