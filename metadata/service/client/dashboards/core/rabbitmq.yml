@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        rabbitmq_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/rabbitmq/rabbitmq_prometheus.json

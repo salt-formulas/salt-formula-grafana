@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        bond_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/linux/bond_prometheus.json

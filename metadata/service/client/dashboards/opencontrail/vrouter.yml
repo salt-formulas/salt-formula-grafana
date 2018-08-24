@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        contrail_vrouter_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/opencontrail/contrail_vrouter_prometheus.json

@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        kibana_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/kibana/kibana_prometheus.json

@@ -1,0 +1,12 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        prometheus_performances_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/prometheus/prometheus_performances_prometheus.json
+        prometheus_stats_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/prometheus/prometheus_stats_prometheus.json

@@ -1,0 +1,12 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        influxdb_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/influxdb/influxdb_prometheus.json
+        influxdb_relay_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/influxdb/influxdb_relay_prometheus.json

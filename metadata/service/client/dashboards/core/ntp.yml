@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        ntp_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/ntp/ntp_prometheus.json

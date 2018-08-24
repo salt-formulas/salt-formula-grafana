@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        octavia_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/octavia/octavia_prometheus.json

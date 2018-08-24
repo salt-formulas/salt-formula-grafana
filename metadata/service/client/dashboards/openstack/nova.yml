@@ -1,0 +1,28 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        hypervisor_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/nova/hypervisor_prometheus.json
+        nova_hypervisor_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/nova/nova_hypervisor_prometheus.json
+        nova_instances_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/nova/nova_instances_prometheus.json
+        nova_overview_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/nova/nova_overview_prometheus.json
+        nova_utilization_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/nova/nova_utilization_prometheus.json
+        openstack_overview_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/nova/openstack_overview_prometheus.json

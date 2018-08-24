@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        etcd_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/etcd/etcd_prometheus.json

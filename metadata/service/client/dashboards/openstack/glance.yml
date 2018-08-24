@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        glance_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/glance/glance_prometheus.json

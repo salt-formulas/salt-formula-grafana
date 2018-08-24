@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        heat_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/heat/heat_prometheus.json
