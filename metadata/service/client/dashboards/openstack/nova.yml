@@ -26,3 +26,7 @@ parameters:
           datasource: prometheus
           format: json
           template: grafana/files/dashboards/nova/openstack_overview_prometheus.json
+        openstack_tenants_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/nova/openstack_tenants_prometheus.json
