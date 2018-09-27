@@ -2,7 +2,7 @@ parameters:
   grafana:
     client:
       dashboard:
-        prometheus_performances_prometheus:
+        prometheus-performances_prometheus:
           datasource: prometheus
           format: json
           template: grafana/files/dashboards/prometheus/prometheus_performances_prometheus.json

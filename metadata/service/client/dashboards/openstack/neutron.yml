@@ -5,4 +5,4 @@ parameters:
         neutron_prometheus:
           datasource: prometheus
           format: json
-          template: grafana/files/dashboards/neutron/neutron_prometheus_fluentd.json
+          template: grafana/files/dashboards/neutron/neutron_prometheus.json
