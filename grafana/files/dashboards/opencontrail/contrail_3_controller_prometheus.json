@@ -416,26 +416,26 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "min(haproxy_scur{environment=\"$environment\", host=~\"$host\", proxy=~\"contrail.api\", sv=\"BACKEND\"}) by (host)",
+          "expr": "sum(label_replace(haproxy_scur{environment=\"$environment\", proxy=~\"contrail.api\", type=\"server\"}, \"sv_new\", \"$1\", \"sv\", \"([a-zA-Z0-9_]+)(?:-.*)?\")) by (sv_new)",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "contrail @{{ host }}",
+          "legendFormat": "contrail @{{ sv_new }}",
           "refId": "A",
           "step": 2
         },
         {
-          "expr": "min(haproxy_scur{environment=\"$environment\", host=~\"$host\",proxy=~\"contrail.analytics\", sv=\"BACKEND\"}) by (host)",
+          "expr": "sum(label_replace(environment=\"$environment\", haproxy_scur{proxy=~\"contrail.analytics\", type=\"server\"}, \"sv_new\", \"$1\", \"sv\", \"([a-zA-Z0-9_]+)(?:-.*)?\")) by (sv_new)",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "analytics @{{ host }}",
+          "legendFormat": "analytics @{{ sv_new }}",
           "refId": "B",
           "step": 2
         },
         {
-          "expr": "min(haproxy_scur{environment=\"$environment\", host=~\"$host\",proxy=~\"contrail.discovery\", sv=\"BACKEND\"}) by (host)",
+          "expr": "sum(label_replace(environment=\"$environment\", haproxy_scur{proxy=~\"contrail.discovery\", type=\"server\"}, \"sv_new\", \"$1\", \"sv\", \"([a-zA-Z0-9_]+)(?:-.*)?\")) by (sv_new)",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "discovery @{{ host }}",
+          "legendFormat": "discovery @{{ sv_new }}",
           "refId": "C"
         }
       ],
