@@ -27,7 +27,7 @@ bind_password = "{{ ldap_params.bind_password }}"
 search_filter = "{{ ldap_params.user_search_filter }}"
 
 # An array of base dns to search through
-search_base_dns = {{ ldap_params.user_search_base_dns }}
+search_base_dns = {{ ldap_params.user_search_base_dns | yaml }}
 
 # In POSIX LDAP schemas, without memberOf attribute a secondary query must be made for groups.
 # This is done by enabling group_search_filter below. You must also set member_of= "cn"
