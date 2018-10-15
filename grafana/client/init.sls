@@ -111,4 +111,7 @@ grafana_client_dashboard_{{ dashboard_name }}:
 {%- endif %}
 {%- endfor %}
 
+include:
+- grafana.client.user
+
 {%- endif %}
