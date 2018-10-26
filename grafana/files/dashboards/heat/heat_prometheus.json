@@ -828,7 +828,7 @@
         "multi": true,
         "name": "host",
         "options": [],
-        "query": "label_values(openstack_http_response_times{service=\"heat\"},host)",
+        "query": "label_values(http_response_status{name=\"heat-api\"},host)",
         "refresh": 1,
         "regex": "",
         "sort": 1,
@@ -914,6 +914,6 @@
   "timezone": "",
   "title": "Heat",
   "uid": null,
-  "version": 1
+  "version": 2
 }
 {%- endraw %}
