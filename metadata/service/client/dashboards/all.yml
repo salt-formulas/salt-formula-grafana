@@ -19,7 +19,8 @@ classes:
 - service.grafana.client.dashboards.opencontrail.cassandra
 - service.grafana.client.dashboards.opencontrail.contrail_3_controller
 - service.grafana.client.dashboards.opencontrail.contrail_4_controller
-- service.grafana.client.dashboards.opencontrail.vrouter
+- service.grafana.client.dashboards.opencontrail.contrail_3_vrouter
+- service.grafana.client.dashboards.opencontrail.contrail_4_vrouter
 - service.grafana.client.dashboards.opencontrail.zookeeper
 - service.grafana.client.dashboards.openstack.cinder
 - service.grafana.client.dashboards.openstack.glance
