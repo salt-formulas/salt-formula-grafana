@@ -17,7 +17,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1532348930591,
+  "iteration": 1541085414079,
   "links": [],
   "panels": [
     {
@@ -104,7 +104,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "procstat_running{environment=\"$environment\", process_name=\"keepalived\",host=~\"$host\"}",
+          "expr": "procstat_running{environment=\"$environment\", process_name=\"keepalived\",host=~\"$host\"} and on(host) keepalived_up{environment=\"$environment\", host=~\"$host\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "refId": "A",
@@ -158,7 +158,7 @@
         "x": 7,
         "y": 1
       },
-      "id": 86,
+      "id": 114,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -189,7 +189,7 @@
       ],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1532348930591,
+      "repeatIteration": 1541085414079,
       "repeatPanelId": 4,
       "scopedVars": {
         "host": {
@@ -207,7 +207,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "procstat_running{environment=\"$environment\", process_name=\"keepalived\",host=~\"$host\"}",
+          "expr": "procstat_running{environment=\"$environment\", process_name=\"keepalived\",host=~\"$host\"} and on(host) keepalived_up{environment=\"$environment\", host=~\"$host\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "refId": "A",
@@ -261,7 +261,7 @@
         "x": 14,
         "y": 1
       },
-      "id": 87,
+      "id": 115,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -292,7 +292,7 @@
       ],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1532348930591,
+      "repeatIteration": 1541085414079,
       "repeatPanelId": 4,
       "scopedVars": {
         "host": {
@@ -310,7 +310,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "procstat_running{environment=\"$environment\", process_name=\"keepalived\",host=~\"$host\"}",
+          "expr": "procstat_running{environment=\"$environment\", process_name=\"keepalived\",host=~\"$host\"} and on(host) keepalived_up{environment=\"$environment\", host=~\"$host\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "refId": "A",
@@ -364,7 +364,7 @@
         "x": 0,
         "y": 4
       },
-      "id": 88,
+      "id": 116,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -395,7 +395,7 @@
       ],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1532348930591,
+      "repeatIteration": 1541085414079,
       "repeatPanelId": 4,
       "scopedVars": {
         "host": {
@@ -413,7 +413,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "procstat_running{environment=\"$environment\", process_name=\"keepalived\",host=~\"$host\"}",
+          "expr": "procstat_running{environment=\"$environment\", process_name=\"keepalived\",host=~\"$host\"} and on(host) keepalived_up{environment=\"$environment\", host=~\"$host\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "refId": "A",
@@ -467,7 +467,7 @@
         "x": 7,
         "y": 4
       },
-      "id": 89,
+      "id": 117,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -498,7 +498,7 @@
       ],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1532348930591,
+      "repeatIteration": 1541085414079,
       "repeatPanelId": 4,
       "scopedVars": {
         "host": {
@@ -516,7 +516,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "procstat_running{environment=\"$environment\", process_name=\"keepalived\",host=~\"$host\"}",
+          "expr": "procstat_running{environment=\"$environment\", process_name=\"keepalived\",host=~\"$host\"} and on(host) keepalived_up{environment=\"$environment\", host=~\"$host\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "refId": "A",
@@ -570,7 +570,7 @@
         "x": 14,
         "y": 4
       },
-      "id": 90,
+      "id": 118,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -601,7 +601,7 @@
       ],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1532348930591,
+      "repeatIteration": 1541085414079,
       "repeatPanelId": 4,
       "scopedVars": {
         "host": {
@@ -619,316 +619,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "procstat_running{environment=\"$environment\", process_name=\"keepalived\",host=~\"$host\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "refId": "A",
-          "step": 4
-        }
-      ],
-      "thresholds": "0,1",
-      "title": "Keepalived@${host}",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        },
-        {
-          "op": "=",
-          "text": "UP",
-          "value": "1"
-        },
-        {
-          "op": "=",
-          "text": "DOWN",
-          "value": "0"
-        }
-      ],
-      "valueName": "avg"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorValue": false,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
-      ],
-      "datasource": null,
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 7,
-        "x": 0,
-        "y": 7
-      },
-      "id": 91,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "minSpan": 7,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "repeat": null,
-      "repeatDirection": "h",
-      "repeatIteration": 1532348930591,
-      "repeatPanelId": 4,
-      "scopedVars": {
-        "host": {
-          "selected": false,
-          "text": "ntw01",
-          "value": "ntw01"
-        }
-      },
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "procstat_running{environment=\"$environment\", process_name=\"keepalived\",host=~\"$host\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "refId": "A",
-          "step": 4
-        }
-      ],
-      "thresholds": "0,1",
-      "title": "Keepalived@${host}",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        },
-        {
-          "op": "=",
-          "text": "UP",
-          "value": "1"
-        },
-        {
-          "op": "=",
-          "text": "DOWN",
-          "value": "0"
-        }
-      ],
-      "valueName": "avg"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorValue": false,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
-      ],
-      "datasource": null,
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 7,
-        "x": 7,
-        "y": 7
-      },
-      "id": 92,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "minSpan": 7,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "repeat": null,
-      "repeatDirection": "h",
-      "repeatIteration": 1532348930591,
-      "repeatPanelId": 4,
-      "scopedVars": {
-        "host": {
-          "selected": false,
-          "text": "ntw02",
-          "value": "ntw02"
-        }
-      },
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "procstat_running{environment=\"$environment\", process_name=\"keepalived\",host=~\"$host\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "refId": "A",
-          "step": 4
-        }
-      ],
-      "thresholds": "0,1",
-      "title": "Keepalived@${host}",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        },
-        {
-          "op": "=",
-          "text": "UP",
-          "value": "1"
-        },
-        {
-          "op": "=",
-          "text": "DOWN",
-          "value": "0"
-        }
-      ],
-      "valueName": "avg"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorValue": false,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
-      ],
-      "datasource": null,
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 7,
-        "x": 14,
-        "y": 7
-      },
-      "id": 93,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "minSpan": 7,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "repeat": null,
-      "repeatDirection": "h",
-      "repeatIteration": 1532348930591,
-      "repeatPanelId": 4,
-      "scopedVars": {
-        "host": {
-          "selected": false,
-          "text": "ntw03",
-          "value": "ntw03"
-        }
-      },
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "procstat_running{environment=\"$environment\", process_name=\"keepalived\",host=~\"$host\"}",
+          "expr": "procstat_running{environment=\"$environment\", process_name=\"keepalived\",host=~\"$host\"} and on(host) keepalived_up{environment=\"$environment\", host=~\"$host\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "refId": "A",
@@ -964,11 +655,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 7
       },
       "id": 59,
       "panels": [],
-      "title": "Status graph",
+      "title": "Status graphs",
       "type": "row"
     },
     {
@@ -980,12 +671,12 @@
       "decimals": 0,
       "fill": 1,
       "gridPos": {
-        "h": 7,
-        "w": 24,
+        "h": 6,
+        "w": 12,
         "x": 0,
-        "y": 11
+        "y": 8
       },
-      "id": 1,
+      "id": 113,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1062,12 +753,102 @@
       }
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "decimals": 0,
+      "fill": 1,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 1,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "keepalived_up{environment=\"$environment\", host=~\"$host\"}",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{ host }}",
+          "refId": "A",
+          "step": 2
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Process responsiveness",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": "1",
+          "min": null,
+          "show": true
+        },
+        {
+          "decimals": null,
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 18
+        "y": 14
       },
       "id": 7,
       "panels": [],
@@ -1080,8 +861,8 @@
       "colorValue": true,
       "colors": [
         "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)"
       ],
       "datasource": null,
       "format": "none",
@@ -1096,7 +877,7 @@
         "h": 3,
         "w": 7,
         "x": 0,
-        "y": 19
+        "y": 15
       },
       "id": 3,
       "interval": null,
@@ -1153,6 +934,8 @@
         }
       ],
       "thresholds": "0.5,1.5",
+      "timeFrom": null,
+      "timeShift": null,
       "title": "VRRP@${host}",
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -1170,12 +953,17 @@
         {
           "op": "=",
           "text": "BACKUP",
-          "value": "1"
+          "value": "2"
         },
         {
           "op": "=",
           "text": "MASTER",
-          "value": "2"
+          "value": "1"
+        },
+        {
+          "op": "=",
+          "text": "UNKNOWN",
+          "value": "-1"
         }
       ],
       "valueName": "current"
@@ -1186,8 +974,8 @@
       "colorValue": true,
       "colors": [
         "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)"
       ],
       "datasource": null,
       "format": "none",
@@ -1202,9 +990,9 @@
         "h": 3,
         "w": 7,
         "x": 7,
-        "y": 19
+        "y": 15
       },
-      "id": 94,
+      "id": 119,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -1235,7 +1023,7 @@
       ],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1532348930591,
+      "repeatIteration": 1541085414079,
       "repeatPanelId": 3,
       "scopedVars": {
         "host": {
@@ -1261,6 +1049,8 @@
         }
       ],
       "thresholds": "0.5,1.5",
+      "timeFrom": null,
+      "timeShift": null,
       "title": "VRRP@${host}",
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -1278,12 +1068,17 @@
         {
           "op": "=",
           "text": "BACKUP",
-          "value": "1"
+          "value": "2"
         },
         {
           "op": "=",
           "text": "MASTER",
-          "value": "2"
+          "value": "1"
+        },
+        {
+          "op": "=",
+          "text": "UNKNOWN",
+          "value": "-1"
         }
       ],
       "valueName": "current"
@@ -1294,8 +1089,8 @@
       "colorValue": true,
       "colors": [
         "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)"
       ],
       "datasource": null,
       "format": "none",
@@ -1310,9 +1105,9 @@
         "h": 3,
         "w": 7,
         "x": 14,
-        "y": 19
+        "y": 15
       },
-      "id": 95,
+      "id": 120,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -1343,7 +1138,7 @@
       ],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1532348930591,
+      "repeatIteration": 1541085414079,
       "repeatPanelId": 3,
       "scopedVars": {
         "host": {
@@ -1369,6 +1164,8 @@
         }
       ],
       "thresholds": "0.5,1.5",
+      "timeFrom": null,
+      "timeShift": null,
       "title": "VRRP@${host}",
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -1386,12 +1183,17 @@
         {
           "op": "=",
           "text": "BACKUP",
-          "value": "1"
+          "value": "2"
         },
         {
           "op": "=",
           "text": "MASTER",
-          "value": "2"
+          "value": "1"
+        },
+        {
+          "op": "=",
+          "text": "UNKNOWN",
+          "value": "-1"
         }
       ],
       "valueName": "current"
@@ -1402,8 +1204,8 @@
       "colorValue": true,
       "colors": [
         "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)"
       ],
       "datasource": null,
       "format": "none",
@@ -1418,9 +1220,9 @@
         "h": 3,
         "w": 7,
         "x": 0,
-        "y": 22
+        "y": 18
       },
-      "id": 96,
+      "id": 121,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -1451,7 +1253,7 @@
       ],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1532348930591,
+      "repeatIteration": 1541085414079,
       "repeatPanelId": 3,
       "scopedVars": {
         "host": {
@@ -1477,6 +1279,8 @@
         }
       ],
       "thresholds": "0.5,1.5",
+      "timeFrom": null,
+      "timeShift": null,
       "title": "VRRP@${host}",
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -1494,12 +1298,17 @@
         {
           "op": "=",
           "text": "BACKUP",
-          "value": "1"
+          "value": "2"
         },
         {
           "op": "=",
           "text": "MASTER",
-          "value": "2"
+          "value": "1"
+        },
+        {
+          "op": "=",
+          "text": "UNKNOWN",
+          "value": "-1"
         }
       ],
       "valueName": "current"
@@ -1510,8 +1319,8 @@
       "colorValue": true,
       "colors": [
         "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)"
       ],
       "datasource": null,
       "format": "none",
@@ -1526,9 +1335,9 @@
         "h": 3,
         "w": 7,
         "x": 7,
-        "y": 22
+        "y": 18
       },
-      "id": 97,
+      "id": 122,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -1559,7 +1368,7 @@
       ],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1532348930591,
+      "repeatIteration": 1541085414079,
       "repeatPanelId": 3,
       "scopedVars": {
         "host": {
@@ -1585,6 +1394,8 @@
         }
       ],
       "thresholds": "0.5,1.5",
+      "timeFrom": null,
+      "timeShift": null,
       "title": "VRRP@${host}",
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -1602,12 +1413,17 @@
         {
           "op": "=",
           "text": "BACKUP",
-          "value": "1"
+          "value": "2"
         },
         {
           "op": "=",
           "text": "MASTER",
-          "value": "2"
+          "value": "1"
+        },
+        {
+          "op": "=",
+          "text": "UNKNOWN",
+          "value": "-1"
         }
       ],
       "valueName": "current"
@@ -1618,8 +1434,8 @@
       "colorValue": true,
       "colors": [
         "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)"
       ],
       "datasource": null,
       "format": "none",
@@ -1634,9 +1450,9 @@
         "h": 3,
         "w": 7,
         "x": 14,
-        "y": 22
+        "y": 18
       },
-      "id": 98,
+      "id": 123,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -1667,7 +1483,7 @@
       ],
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1532348930591,
+      "repeatIteration": 1541085414079,
       "repeatPanelId": 3,
       "scopedVars": {
         "host": {
@@ -1693,6 +1509,8 @@
         }
       ],
       "thresholds": "0.5,1.5",
+      "timeFrom": null,
+      "timeShift": null,
       "title": "VRRP@${host}",
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -1710,336 +1528,17 @@
         {
           "op": "=",
           "text": "BACKUP",
-          "value": "1"
+          "value": "2"
         },
         {
           "op": "=",
           "text": "MASTER",
-          "value": "2"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": true,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
-      ],
-      "datasource": null,
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 7,
-        "x": 0,
-        "y": 25
-      },
-      "id": 99,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
+          "value": "1"
         },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "minSpan": 7,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "repeat": null,
-      "repeatDirection": "h",
-      "repeatIteration": 1532348930591,
-      "repeatPanelId": 3,
-      "scopedVars": {
-        "host": {
-          "selected": false,
-          "text": "ntw01",
-          "value": "ntw01"
-        }
-      },
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "keepalived_state{environment=\"$environment\", host=\"$host\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "refId": "A",
-          "step": 4
-        }
-      ],
-      "thresholds": "0.5,1.5",
-      "title": "VRRP@${host}",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
         {
           "op": "=",
           "text": "UNKNOWN",
-          "value": "null"
-        },
-        {
-          "op": "=",
-          "text": "FAILED",
-          "value": "0"
-        },
-        {
-          "op": "=",
-          "text": "BACKUP",
-          "value": "1"
-        },
-        {
-          "op": "=",
-          "text": "MASTER",
-          "value": "2"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": true,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
-      ],
-      "datasource": null,
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 7,
-        "x": 7,
-        "y": 25
-      },
-      "id": 100,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "minSpan": 7,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "repeat": null,
-      "repeatDirection": "h",
-      "repeatIteration": 1532348930591,
-      "repeatPanelId": 3,
-      "scopedVars": {
-        "host": {
-          "selected": false,
-          "text": "ntw02",
-          "value": "ntw02"
-        }
-      },
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "keepalived_state{environment=\"$environment\", host=\"$host\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "refId": "A",
-          "step": 4
-        }
-      ],
-      "thresholds": "0.5,1.5",
-      "title": "VRRP@${host}",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "UNKNOWN",
-          "value": "null"
-        },
-        {
-          "op": "=",
-          "text": "FAILED",
-          "value": "0"
-        },
-        {
-          "op": "=",
-          "text": "BACKUP",
-          "value": "1"
-        },
-        {
-          "op": "=",
-          "text": "MASTER",
-          "value": "2"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": true,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
-      ],
-      "datasource": null,
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 7,
-        "x": 14,
-        "y": 25
-      },
-      "id": 101,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "minSpan": 7,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "repeat": null,
-      "repeatDirection": "h",
-      "repeatIteration": 1532348930591,
-      "repeatPanelId": 3,
-      "scopedVars": {
-        "host": {
-          "selected": false,
-          "text": "ntw03",
-          "value": "ntw03"
-        }
-      },
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "keepalived_state{environment=\"$environment\", host=\"$host\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "refId": "A",
-          "step": 4
-        }
-      ],
-      "thresholds": "0.5,1.5",
-      "title": "VRRP@${host}",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "UNKNOWN",
-          "value": "null"
-        },
-        {
-          "op": "=",
-          "text": "FAILED",
-          "value": "0"
-        },
-        {
-          "op": "=",
-          "text": "BACKUP",
-          "value": "1"
-        },
-        {
-          "op": "=",
-          "text": "MASTER",
-          "value": "2"
+          "value": "-1"
         }
       ],
       "valueName": "current"
@@ -2050,7 +1549,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 21
       },
       "id": 85,
       "panels": [],
@@ -2064,12 +1563,13 @@
       "dashes": false,
       "datasource": null,
       "decimals": 0,
+      "description": "Value-state mapping:\n2 - BACKUP\n1 - MASTER\n0 - FAILED\n-1 - UNKNOWN",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 29
+        "y": 22
       },
       "id": 2,
       "legend": {
@@ -2193,7 +1693,7 @@
         "multi": true,
         "name": "host",
         "options": [],
-        "query": "label_values(procstat_running{environment=\"$environment\", process_name=\"keepalived\"}, host)",
+        "query": "label_values(procstat_running{environment=\"$environment\", process_name=\"keepalived\"},host)",
         "refresh": 1,
         "regex": "",
         "sort": 1,
@@ -2236,6 +1736,6 @@
   },
   "timezone": "",
   "title": "Keepalived",
-  "version": 1
+  "version": 2
 }
 {% endraw %}
