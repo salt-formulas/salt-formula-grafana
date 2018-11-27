@@ -1,6 +1,9 @@
 
 {%- if pillar.grafana is defined %}
 include:
+{%- if grains['os_family'] == 'RedHat' %}
+- grafana.repo.redhat
+{%- endif %}
 {%- if pillar.grafana.server is defined %}
 - grafana.server
 {%- endif %}
