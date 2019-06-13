@@ -3,7 +3,7 @@
 
 grafana_packages:
   pkg.installed:
-  - names: {{ server.pkgs }}
+  - names: {{ server.pkgs|tojson }}
 
 /etc/grafana/grafana.ini:
   file.managed:
