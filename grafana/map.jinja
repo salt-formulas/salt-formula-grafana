@@ -1,6 +1,7 @@
 
 {%- load_yaml as server_defaults %}
 Debian:
+  manage_repo: false
   pkgs:
   - grafana
   service: grafana-server
@@ -51,6 +52,7 @@ Debian:
   dashboards:
     enabled: false
 RedHat:
+  manage_repo: true
   pkgs:
   - grafana
   service: grafana-server
