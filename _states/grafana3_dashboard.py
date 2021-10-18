@@ -579,7 +579,7 @@ def _dashboard_diff(_new_dashboard, _old_dashboard):
 def _stripped(d):
     '''Strip falsey entries.'''
     ret = {}
-    for k, v in six.iteritems(d):
+    for k, v in six.items(d):
         if v:
             ret[k] = v
     return ret

@@ -83,6 +83,9 @@ grafana_{{ theme_name }}_css_override:
     - mode: 755
     - user: {{ server.user }}
     - group: {{ server.group }}
+    - recurse:
+      - user
+      - group
 
 {{server.path.logs}}:
   file.directory:
@@ -90,6 +93,9 @@ grafana_{{ theme_name }}_css_override:
     - mode: 755
     - user: {{ server.user }}
     - group: {{ server.group }}
+    - recurse:
+      - user
+      - group
 
 grafana_service:
   service.running:
