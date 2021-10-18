@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        pushgateway_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/prometheus/pushgateway_prometheus.json

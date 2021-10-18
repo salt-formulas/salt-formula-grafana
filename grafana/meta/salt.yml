@@ -17,7 +17,7 @@ grain:
 {%- endif %}
 
 minion:
-  {%- if pillar.grafana.client is defined %}
+  {%- if pillar.get('grafana', {}).client is defined %}
   grafana:
     {%- from "grafana/map.jinja" import client with context %}
     grafana_version: {{ client.server.get('version', 3) }}

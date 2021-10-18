@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        docker_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/docker/docker_prometheus.json

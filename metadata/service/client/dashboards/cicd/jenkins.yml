@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        jenkins_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/jenkins/jenkins_prometheus.json

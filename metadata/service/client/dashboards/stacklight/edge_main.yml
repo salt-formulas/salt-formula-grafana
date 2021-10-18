@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        edge_main:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/edge/edge_main.json

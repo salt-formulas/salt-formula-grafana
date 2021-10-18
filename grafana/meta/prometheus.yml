@@ -1,0 +1,30 @@
+{%- if pillar.grafana.client is defined %}
+{%- from "grafana/map.jinja" import client with context %}
+
+{%- if client.get('enabled') %}
+
+{%- set addresses = [] %}
+{%- if not client.server.host.startswith('127') and client.server.host != '0.0.0.0' %}
+{%- do addresses.append(client.server.host) %}
+{%- endif %}
+{%- for address in grains['fqdn_ip4'] %}
+{%- if not address.startswith('127') %}
+{%- do addresses.append(address) %}
+{%- endif %}
+{%- endfor %}
+server:
+  target:
+    static:
+      grafana:
+        enabled: true
+        endpoint:
+        - address: {{ addresses[0] }}
+          port: {{ client.server.port }}
+        metric_relabel:
+        - source_labels: "__name__"
+          regex: "http_.*"
+          action: drop
+
+{%- endif %}
+
+{%- endif %}

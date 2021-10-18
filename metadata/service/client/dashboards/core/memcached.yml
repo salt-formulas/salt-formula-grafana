@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        memcached_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/memcached/memcached_prometheus.json

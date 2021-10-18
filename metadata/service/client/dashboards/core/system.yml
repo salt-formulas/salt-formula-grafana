@@ -1,0 +1,16 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        linux_disk_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/linux/system_disk_prometheus.json
+        linux_network_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/linux/system_network_prometheus.json
+        linux_overview_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/linux/system_overview_prometheus.json

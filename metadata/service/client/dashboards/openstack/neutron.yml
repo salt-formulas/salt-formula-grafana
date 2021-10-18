@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        neutron_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/neutron/neutron_prometheus.json

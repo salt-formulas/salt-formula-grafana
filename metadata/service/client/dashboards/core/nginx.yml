@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        nginx_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/nginx/nginx_prometheus.json

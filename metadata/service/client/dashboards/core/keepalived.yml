@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        keepalived_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/keepalived/keepalived_prometheus.json

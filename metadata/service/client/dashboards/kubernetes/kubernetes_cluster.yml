@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        kubernetes_cluster_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/kubernetes/kubernetes_cluster_prometheus.json

@@ -27,12 +27,14 @@ KITCHEN_OPTS_TEST?=""
 
 all:
 	@echo "make install - Install into DESTDIR"
+	@echo "make lint    - Run lint tests"
 	@echo "make test    - Run tests"
 	@echo "make kitchen - Run Kitchen CI tests (create, converge, verify)"
 	@echo "make clean   - Cleanup after tests run"
 	@echo "make release-major  - Generate new major release"
 	@echo "make release-minor  - Generate new minor release"
 	@echo "make changelog      - Show changes since last release"
+	@echo "make test-model-validate      - Run salt jsonschema validation"
 
 install:
 	# Formula
@@ -40,13 +42,21 @@ install:
 	cp -a $(FORMULANAME) $(DESTDIR)/$(SALTENVDIR)/
 	[ ! -d _modules ] || cp -a _modules $(DESTDIR)/$(SALTENVDIR)/
 	[ ! -d _states ] || cp -a _states $(DESTDIR)/$(SALTENVDIR)/ || true
+	[ ! -d _engines ] || cp -a _engines $(DESTDIR)/$(SALTENVDIR)/ || true
 	[ ! -d _grains ] || cp -a _grains $(DESTDIR)/$(SALTENVDIR)/ || true
 	# Metadata
 	[ -d $(DESTDIR)/$(RECLASSDIR)/service/$(FORMULANAME) ] || mkdir -p $(DESTDIR)/$(RECLASSDIR)/service/$(FORMULANAME)
 	cp -a metadata/service/* $(DESTDIR)/$(RECLASSDIR)/service/$(FORMULANAME)
 
+lint:
+	[ ! -d tests ] || (cd tests; ./run_tests.sh lint)
+
 test:
 	[ ! -d tests ] || (cd tests; ./run_tests.sh)
+
+test-model-validate:
+	# TODO make it actually fail
+	[ ! -d $(FORMULANAME)/schemas/ ] || (cd tests; ./run_tests.sh model-validate)
 
 release-major: check-changes
 	@echo "Current version is $(VERSION), new version is $(NEW_MAJOR_VERSION)"
@@ -65,7 +75,7 @@ release-minor: check-changes
 	[ ! -f debian/changelog ] || dch -v $(VERSION_MAJOR).$(NEW_MINOR_VERSION) -m --force-distribution -D `dpkg-parsechangelog -S Distribution` "New version"
 	make genchangelog-$(VERSION_MAJOR).$(NEW_MINOR_VERSION)
 	(git add -u; git commit -m "Version $(VERSION_MAJOR).$(NEW_MINOR_VERSION)")
-	git tag -s -m $(NEW_MAJOR_VERSION) $(VERSION_MAJOR).$(NEW_MINOR_VERSION)
+	git tag -s -m $(VERSION_MAJOR).$(NEW_MINOR_VERSION) $(VERSION_MAJOR).$(NEW_MINOR_VERSION)
 
 check-changes:
 	@git log --pretty=oneline --decorate $(VERSION)..HEAD | grep -Eqc '.*' || (echo "No new changes since version $(VERSION)"; exit 1)

@@ -10,6 +10,6 @@ Vcs-Git: https://github.com/tcpcloud/salt-formula-grafana.git
 
 Package: salt-formula-grafana
 Architecture: all
-Depends: ${misc:Depends}, salt-master, reclass
+Depends: ${misc:Depends}
 Description: grafana Salt formula
  Install and configure grafana server and relay.

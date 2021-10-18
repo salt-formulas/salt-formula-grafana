@@ -61,6 +61,9 @@ def present(name,
             basic_auth=False,
             basic_auth_user='',
             basic_auth_password='',
+            mode=None,
+            domain='default',
+            project=None,
             is_default=False,
             profile='grafana'):
     '''
@@ -97,6 +100,15 @@ def present(name,
     basic_auth_password
         Optional - HTTP basic auth password.
 
+    mode
+        Optional - Gnocchi authentication mode.
+
+    domain
+        Optional - Gnocchi domain, defaults to "default".
+
+    project
+        Optional - Keystone user for Gnocchi.
+
     is_default
         Optional - Set data source as default. Default: False
     '''
@@ -113,6 +125,9 @@ def present(name,
                           basic_auth=basic_auth,
                           basic_auth_user=basic_auth_user,
                           basic_auth_password=basic_auth_password,
+                          mode=mode,
+                          domain=domain,
+                          project=project,
                           is_default=is_default)
 
     if datasource:
@@ -194,21 +209,20 @@ def _get_datasource(profile, name):
     for datasource in data:
         if datasource['name'] == name:
             return datasource
-    return None
 
 
 def _get_headers(profile):
 
     headers = {'Content-type': 'application/json'}
 
-    if profile.get('grafana_token', False):
+    if profile.get('grafana_token'):
         headers['Authorization'] = 'Bearer {0}'.format(profile['grafana_token'])
 
     return headers
 
 
 def _get_auth(profile):
-    if profile.get('grafana_token', False):
+    if profile.get('grafana_token'):
         return None
 
     return requests.auth.HTTPBasicAuth(
@@ -227,10 +241,13 @@ def _get_json_data(name,
                    basic_auth=False,
                    basic_auth_user='',
                    basic_auth_password='',
+                   mode=None,
+                   domain=None,
+                   project=None,
                    is_default=False,
                    type_logo_url='public/app/plugins/datasource/influxdb/img/influxdb_logo.svg',
                    with_credentials=False):
-    return {
+    data = {
         'name': name,
         'type': type,
         'url': url,
@@ -245,6 +262,18 @@ def _get_json_data(name,
         'typeLogoUrl': type_logo_url,
         'withCredentials': with_credentials,
     }
+    if data['type'] == 'gnocchixyz-gnocchi-datasource':
+        json_data = {}
+        for special in ['mode', 'domain', 'project', 'user', 'password']:
+            value = locals().get(special)
+            if value is not None:
+                if special == 'user':
+                    json_data['username'] = value
+                else:
+                    json_data[special] = value
+        if json_data:
+            data['jsonData'] = json_data
+    return data
 
 
 def _diff(old, new):
@@ -252,7 +281,7 @@ def _diff(old, new):
     old = old.copy()
     new = new.copy()
     for key in old_keys:
-        if key == 'id' or key == 'orgId':
+        if key in ['id', 'orgId']:
             del old[key]
         # New versions of Grafana can introduce new keys that are not present
         # in _get_json_data.

@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        cassandra_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/opencontrail/cassandra_prometheus.json

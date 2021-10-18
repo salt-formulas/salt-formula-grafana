@@ -1,0 +1,15 @@
+classes:
+- service.grafana.client.dashboards.stacklight.alertmanager
+- service.grafana.client.dashboards.stacklight.elasticsearch
+- service.grafana.client.dashboards.stacklight.grafana
+- service.grafana.client.dashboards.stacklight.kibana
+- service.grafana.client.dashboards.stacklight.prometheus
+- service.grafana.client.dashboards.stacklight.prometheus_relay
+- service.grafana.client.dashboards.stacklight.pushgateway
+- service.grafana.client.dashboards.core.docker.yml
+- service.grafana.client.dashboards.core.galera.yml
+- service.grafana.client.dashboards.core.haproxy.yml
+- service.grafana.client.dashboards.core.keepalived.yml
+- service.grafana.client.dashboards.core.nginx.yml
+- service.grafana.client.dashboards.core.ntp.yml
+- service.grafana.client.dashboards.core.system.yml

@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        relay_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/prometheus/relay_prometheus.json

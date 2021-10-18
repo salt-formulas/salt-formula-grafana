@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        remote_storage_adapter_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/prometheus/remote_storage_adapter_prometheus.json

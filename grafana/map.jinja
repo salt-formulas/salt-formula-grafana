@@ -6,6 +6,9 @@ Debian:
   service: grafana-server
   user: grafana
   group: grafana
+  protocol: http
+  domain: localhost
+  root_url: '%(protocol)s://%(domain)s:%(http_port)s/'
   path:
     home: /usr/share/grafana
     data: /var/lib/grafana

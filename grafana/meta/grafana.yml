@@ -7,12 +7,18 @@ dashboard:
     datasource: prometheus
     format: json
     template: grafana/files/grafana_dashboards/grafana_prometheus.json
-  main:
+  main_influxdb:
     datasource: influxdb
     format: yaml
     base_dashboards: ['grafana:client:base_templates:main_dashboard']
     base_rows: ['grafana:client:base_templates:service_row']
     base_panels: ['grafana:client:base_templates:cluster_status_singlestat']
+  main_prometheus:
+    datasource: prometheus
+    format: yaml
+    base_dashboards: ['grafana:client:base_templates:prometheus_main_dashboard']
+    base_rows: ['grafana:client:base_templates:service_row']
+    base_panels: ['grafana:client:base_templates:prometheus_cluster_status']
   service_level:
     datasource: influxdb
     format: yaml

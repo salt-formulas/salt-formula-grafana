@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        cinder_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/cinder/cinder_prometheus.json

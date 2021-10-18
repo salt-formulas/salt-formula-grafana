@@ -1,0 +1,8 @@
+parameters:
+  grafana:
+    client:
+      dashboard:
+        haproxy_prometheus:
+          datasource: prometheus
+          format: json
+          template: grafana/files/dashboards/haproxy/haproxy_prometheus.json
