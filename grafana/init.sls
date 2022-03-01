@@ -1,3 +1,4 @@
+lookup:
 
 {%- if pillar.grafana is defined %}
 include:
